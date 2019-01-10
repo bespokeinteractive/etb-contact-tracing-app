@@ -14,15 +14,11 @@ package org.openmrs.mobile.activities.patientdashboard.contacts;
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -34,27 +30,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.openmrs.mobile.R;
-import org.openmrs.mobile.activities.ACBaseActivity;
 import org.openmrs.mobile.activities.addeditpatient.AddEditPatientActivity;
-import org.openmrs.mobile.activities.patientcontacts.DatabaseHelper;
 import org.openmrs.mobile.activities.patientcontacts.MainActivity;
 import org.openmrs.mobile.activities.patientcontacts.Name;
 import org.openmrs.mobile.activities.patientcontacts.NameAdapter;
-import org.openmrs.mobile.activities.patientcontacts.NetworkStateChecker;
-import org.openmrs.mobile.activities.patientcontacts.VolleySingleton;
 import org.openmrs.mobile.activities.patientcontacts.lists;
 import org.openmrs.mobile.activities.patientdashboard.PatientDashboardActivity;
 import org.openmrs.mobile.activities.patientdashboard.PatientDashboardContract;
@@ -63,16 +46,12 @@ import org.openmrs.mobile.activities.patientdashboard.details.PatientDashboardDe
 import org.openmrs.mobile.activities.patientdashboard.details.PatientPhotoActivity;
 import org.openmrs.mobile.models.Patient;
 import org.openmrs.mobile.utilities.ApplicationConstants;
-import org.openmrs.mobile.utilities.DateUtils;
 import org.openmrs.mobile.utilities.FontsUtil;
 import org.openmrs.mobile.utilities.StringUtils;
 import org.openmrs.mobile.utilities.ToastUtil;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ContactPatientDetailsFragment extends PatientDashboardFragment implements PatientDashboardContract.ViewPatientDetails {
 
@@ -164,7 +143,7 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragments_contacts_add, null, false);
+        rootView = inflater.inflate(R.layout.fragment_contacts_add, null, false);
 //       pasted from here
 
 
