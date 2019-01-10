@@ -1,0 +1,1241 @@
+<!--&lt;!&ndash;-->
+  <!--~ The contents of this file are subject to the OpenMRS Public License-->
+  <!--~ Version 1.0 (the "License"); you may not use this file except in-->
+  <!--~ compliance with the License. You may obtain a copy of the License at-->
+  <!--~ http://license.openmrs.org-->
+  <!--~-->
+  <!--~ Software distributed under the License is distributed on an "AS IS"-->
+  <!--~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the-->
+  <!--~ License for the specific language governing rights and limitations-->
+  <!--~ under the License.-->
+  <!--~-->
+  <!--~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.-->
+  <!--&ndash;&gt;-->
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:id="@+id/addEditRelativeLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@drawable/card"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/patientDetailsNames"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="8dp"-->
+                    <!--android:layout_marginStart="8dp"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:text="@string/patient_details_photo_label"-->
+                    <!--android:textColor="@color/primary"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:focusable="true"-->
+                    <!--android:focusableInTouchMode="true">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/patientPhoto"-->
+                        <!--android:layout_width="200dp"-->
+                        <!--android:layout_height="200dp"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:background="@color/card_shadow_1"-->
+                        <!--android:contentDescription="@string/patient_photo"-->
+                        <!--android:scaleType="fitXY"-->
+                        <!--android:src="@drawable/ic_person_grey_500_48dp" />-->
+
+                    <!--<android.support.design.widget.FloatingActionButton-->
+                        <!--android:id="@+id/capture_photo"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignEnd="@id/patientPhoto"-->
+                        <!--android:layout_alignRight="@id/patientPhoto"-->
+                        <!--android:layout_below="@id/patientPhoto"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:layout_marginEnd="-25dp"-->
+                        <!--android:layout_marginRight="-25dp"-->
+                        <!--android:src="@drawable/ic_photo_camera_white_48dp" />-->
+                <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_margin="10dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="@drawable/card"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:orientation="vertical">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="8dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="8dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="Contact's Information"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/primary"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/reg_ques_name"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#555"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:weightSum="2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:baselineAligned="false">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutFirstName"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/ContactGivenName"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/reg_firstname_hint"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="textPersonName|textCapWords"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutMiddlename"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/ContactMiddleName"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/reg_midname_hint"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="textPersonName|textCapWords"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/fnameerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/emptyerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/red"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="gone" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/textInputLayoutSurname"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/surname"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:hint="@string/reg_surname_hint"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:inputType="textPersonName|textCapWords"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/lnameerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:gravity="end"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/emptyerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/red"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="invisible" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/reg_ques_gender"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#555"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/gendererror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/emptyerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/red"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="gone" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<RadioGroup&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/gender"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="20dp">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<RadioButton&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/male"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:text="@string/male" />&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<RadioButton&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/female"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:text="@string/female" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</RadioGroup>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/reg_ques_dob"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#555"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/doberror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/red"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="gone" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutDOB"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_alignParentTop="true">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/dob"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginEnd="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginStart="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/dob_hint"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="datetime"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:nextFocusDown="@+id/estyr"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<Button&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/btn_datepicker"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="24dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="24dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_alignParentEnd="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_alignParentRight="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_alignParentTop="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="14dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginEnd="24dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginRight="24dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="@drawable/btn_date_picker"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/label_or"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#777"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginBottom="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:weightSum="2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:baselineAligned="false">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutEstyr"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/estyr"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/estyr"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="number"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutEstmonth"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/estmonth"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/estmonth"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="number"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+            <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_margin="10dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="@drawable/card"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:orientation="vertical">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="8dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="8dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/patient_contact_info_label"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/primary"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/addrerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/atleastone"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/red"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="gone" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/countryerror"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:padding="2dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/incorrect_country"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="@color/red"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="gone" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="@string/reg_ques_address"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textColor="#555"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/textInputLayoutAddress"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/addr1"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:hint="@string/addr1_hint"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:inputType="textCapWords"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/textInputLayoutAddess2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/addr2"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:hint="@string/addr2_hint"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:inputType="textCapWords"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:weightSum="2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:baselineAligned="false">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutCountry"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<AutoCompleteTextView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/country"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/patient_country_label"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="textCapSentences"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutState"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<AutoCompleteTextView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/state"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/patient_state_label"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="text"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:weightSum="2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:baselineAligned="false">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutCity"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/city"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/patient_city_label"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionNext"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="text"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/textInputLayoutPostal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_weight="1">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/editTextName"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginBottom="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:hint="@string/patient_postal_label"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:imeOptions="actionDone"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:inputType="text"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:maxLines="1"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;commented before&ndash;&gt;-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginLeft="12dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textColor="#555"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="@string/reg_ques_phno"/>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<EditText&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/phone"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_marginBottom="20dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textSize="14sp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:focusable="true"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:hint="@string/phone_hint"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:inputType="phone"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:singleLine="true" />&ndash;&gt;-->
+            <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+            <!--<Button-->
+                <!--android:id="@+id/buttonSave"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/btn_submit_selector"-->
+                <!--android:text="@string/action_register_patient"-->
+                <!--android:textColor="@color/white" />-->
+
+            <!--<Button-->
+                <!--android:id="@+id/buttonOpen"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/btn_submit_selector"-->
+                <!--android:text="Open Names"-->
+                <!--android:textColor="@color/white" />-->
+
+            <!--<ListView-->
+                <!--android:id="@+id/listViewNames"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"></ListView>-->
+
+
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
+
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progress_bar"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:visibility="gone" />-->
+
+<!--</RelativeLayout>-->
+
+  <!--
+    ~ The contents of this file are subject to the OpenMRS Public License
+    ~ Version 1.0 (the "License"); you may not use this file except in
+    ~ compliance with the License. You may obtain a copy of the License at
+    ~ http://license.openmrs.org
+    ~
+    ~ Software distributed under the License is distributed on an "AS IS"
+    ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+    ~ License for the specific language governing rights and limitations
+    ~ under the License.
+    ~
+    ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+    -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addEditRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/patientDetailsNames"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/patient_details_photo_label"
+                    android:textColor="@color/primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+
+                    <ImageView
+                        android:id="@+id/patientPhoto"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_centerInParent="true"
+                        android:background="@color/card_shadow_1"
+                        android:contentDescription="@string/patient_photo"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_person_grey_500_48dp" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/capture_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@id/patientPhoto"
+                        android:layout_alignRight="@id/patientPhoto"
+                        android:layout_below="@id/patientPhoto"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="-25dp"
+                        android:layout_marginRight="-25dp"
+                        android:src="@drawable/ic_photo_camera_white_48dp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Contact's Information"
+                    android:textColor="@color/primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/reg_ques_name"
+                    android:textColor="#555"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:weightSum="2"
+                    android:baselineAligned="false">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutFirstName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/firstname"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/reg_firstname_hint"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName|textCapWords"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutMiddlename"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/middlename"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/reg_midname_hint"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName|textCapWords"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/fnameerror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+                    android:text="@string/emptyerror"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInputLayoutSurname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:id="@+id/surname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:focusable="true"
+                        android:hint="@string/reg_surname_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLines="1"
+                        android:textSize="14sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/lnameerror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:padding="2dp"
+                    android:text="@string/emptyerror"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/reg_ques_gender"
+                    android:textColor="#555"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gendererror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:padding="2dp"
+                    android:text="@string/emptyerror"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <RadioGroup
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/male" />
+
+                    <RadioButton
+                        android:id="@+id/female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/female" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/reg_ques_dob"
+                    android:textColor="#555"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/doberror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:padding="2dp"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutDOB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true">
+
+                        <EditText
+                            android:id="@+id/dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginStart="20dp"
+                            android:hint="@string/dob_hint"
+                            android:imeOptions="actionNext"
+                            android:inputType="datetime"
+                            android:maxLines="1"
+                            android:nextFocusDown="@+id/estyr"
+                            android:textSize="14sp"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_datepicker"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:background="@drawable/btn_date_picker"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/label_or"
+                    android:textColor="#777"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:weightSum="2"
+                    android:baselineAligned="false">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutEstyr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/estyr"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/estyr"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutEstmonth"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/estmonth"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/estmonth"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/card"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/patient_contact_info_label"
+                    android:textColor="@color/primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/addrerror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:padding="2dp"
+                    android:text="@string/atleastone"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/countryerror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:padding="2dp"
+                    android:text="@string/incorrect_country"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/reg_ques_address"
+                    android:textColor="#555"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInputLayoutAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:id="@+id/addr1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:focusable="true"
+                        android:hint="@string/addr1_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        android:textSize="14sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInputLayoutAddess2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:id="@+id/addr2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:focusable="true"
+                        android:hint="@string/addr2_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        android:textSize="14sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:baselineAligned="false">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutCountry"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/country"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/patient_country_label"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapSentences"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutState"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/state"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/patient_state_label"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:weightSum="2"
+                    android:baselineAligned="false">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutCity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/city"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:hint="@string/patient_city_label"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textInputLayoutPostal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/editTextName"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:focusable="true"
+                            android:hint="@string/patient_postal_label"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_marginLeft="12dp"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#555"-->
+                <!--android:text="@string/reg_ques_phno"/>-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/phone"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:layout_marginBottom="20dp"-->
+                <!--android:textSize="14sp"-->
+                <!--android:focusable="true"-->
+                <!--android:hint="@string/phone_hint"-->
+                <!--android:inputType="phone"-->
+                <!--android:singleLine="true" />-->
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_submit_selector"
+                android:text="@string/action_register_patient"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_submit_selector"
+                android:text="@string/action_register_patient"
+                android:textColor="@color/white" />
+
+            <ListView
+                android:id="@+id/listViewNames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></ListView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
