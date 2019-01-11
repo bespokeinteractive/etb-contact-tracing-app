@@ -64,6 +64,9 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
     private EditText editTextName;
     private ListView listViewNames;
     private TextView patientDetailsNames;
+    private EditText editTextmiddlename;
+    private EditText editTextDob;
+    private EditText editTextAddress;
 
     private List<Name> names;
 
@@ -169,15 +172,25 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
             public void onClick(View v) {
 
              EditText  editname  = (EditText) rootView.findViewById(R.id.editTextName);
+             EditText  editTextmiddlename  = (EditText) rootView.findViewById(R.id.editTextmiddlename);
              TextView  patientDetailsNames  = (TextView) rootView.findViewById(R.id.patientDetailsNames);
+             EditText  editdob  = (EditText) rootView.findViewById(R.id.editTextDob);
+             EditText  editaddress  = (EditText) rootView.findViewById(R.id.editTextAddress);
+
 
              String text = editname.getText().toString();
              String text1 = patientDetailsNames.getText().toString();
+             String middlenametxt = editTextmiddlename.getText().toString();
+             String dobtxt = editdob.getText().toString();
+             String addresstxt = editaddress.getText().toString();
 
 
                Intent intent = new Intent(v.getContext(), MainActivity.class);
                 intent.putExtra("mytext",text);
                 intent.putExtra("idnt",text1);
+                intent.putExtra("middlenametxt", middlenametxt );
+                intent.putExtra("dobtxt", dobtxt );
+                intent.putExtra("addresstxt", addresstxt );
 
                 startActivity(intent);
 

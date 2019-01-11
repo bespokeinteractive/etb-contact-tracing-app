@@ -51,7 +51,10 @@ public class NetworkStateChecker extends BroadcastReceiver {
                         //calling the method to save the unsynced name to MySQL
                         saveName(
                                 cursor.getInt(cursor.getColumnIndex(org.openmrs.mobile.activities.patientcontacts.DatabaseHelper.COLUMN_ID)),
-                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME))
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_GIVEN_NAME)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MIDDLE_NAME)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DOB)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS))
                         );
                     } while (cursor.moveToNext());
                 }
@@ -62,10 +65,10 @@ public class NetworkStateChecker extends BroadcastReceiver {
     /*
      * method taking two arguments
      * name that is to be saved and id of the name from SQLite
-     * if the name is successfully sent
+     * if the name is successfully sentnal
      * we will update the status as synced in SQLite
      * */
-    private void saveName(final int id, final String name) {
+    private void saveName(final int id, final String name , final String midname ,final String dob , final String addr ) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, org.openmrs.mobile.activities.patientcontacts.MainActivity.URL_SAVE_NAME,
                 new Response.Listener<String>() {
                     @Override
@@ -94,6 +97,9 @@ public class NetworkStateChecker extends BroadcastReceiver {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("name", name);
+                params.put("midname", midname);
+                params.put("dob", dob);
+                params.put("addr", addr);
                 return params;
             }
         };

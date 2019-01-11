@@ -38,7 +38,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
      * make sure you are using the ip instead of localhost
      * it will not work if you are using localhost
      * */
-    public static final String URL_SAVE_NAME = "http://192.168.0.102/SyncData/saveName.php";
+    public static final String URL_SAVE_NAME = "http://192.168.0.100/SyncData/saveName.php";
 
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
@@ -47,9 +47,11 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
     private Button buttonSave;
     public EditText editTextName;
     private ListView listViewNames;
-
+    public EditText editTextmiddlename;
     private Button buttonOpen;
     private TextView patientDetailsNames;
+    public EditText editTextDob;
+    public EditText editTextAddress;
 
 
     //List to store all the names
@@ -81,11 +83,22 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         buttonSave = (Button) findViewById(R.id.buttonSave);
 
         editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextmiddlename = (EditText) findViewById(R.id.editTextmiddlename);
+        editTextDob = (EditText) findViewById(R.id.editTextDob);
+        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
+
 
         patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
 
+
         editTextName.setText(getIntent().getStringExtra("mytext"));
-       patientDetailsNames.setText(getIntent().getStringExtra("idnt"));
+        editTextmiddlename.setText(getIntent().getStringExtra("middlenametxt"));
+        patientDetailsNames.setText(getIntent().getStringExtra("idnt"));
+        editTextDob.setText(getIntent().getStringExtra("dobtxt"));
+        editTextAddress.setText(getIntent().getStringExtra("addresstxt"));
+
+
+
 
         listViewNames = (ListView) findViewById(R.id.listViewNames);
 
@@ -131,7 +144,10 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         if (cursor.moveToFirst()) {
             do {
                 Name name = new Name(
-                        cursor.getString(cursor.getColumnIndex(org.openmrs.mobile.activities.patientcontacts.DatabaseHelper.COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(org.openmrs.mobile.activities.patientcontacts.DatabaseHelper.COLUMN_GIVEN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MIDDLE_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DOB)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS)),
                         cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUS))
                 );
                 names.add(name);
@@ -158,6 +174,9 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         progressDialog.show();
 
         final String name = editTextName.getText().toString().trim();
+        final String midname = editTextmiddlename.getText().toString().trim();
+        final String dob = editTextDob.getText().toString().trim();
+        final String addr = editTextAddress.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
                 new Response.Listener<String>() {
@@ -169,11 +188,11 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                             if (!obj.getBoolean("error")) {
                                 //if there is a success
                                 //storing the name to sqlite with status synced
-                                saveNameToLocalStorage(name, NAME_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob, addr,  NAME_SYNCED_WITH_SERVER);
                             } else {
                                 //if there is some error
                                 //saving the name to sqlite with status unsynced
-                                saveNameToLocalStorage(name, NAME_NOT_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob ,addr, NAME_NOT_SYNCED_WITH_SERVER);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -185,13 +204,17 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
                         //on error storing the name to sqlite with status unsynced
-                        saveNameToLocalStorage(name, NAME_NOT_SYNCED_WITH_SERVER);
+                        saveNameToLocalStorage(name, midname,dob, addr, NAME_NOT_SYNCED_WITH_SERVER);
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("name", name);
+                params.put("given_name", name);
+                params.put("middle_name", midname);
+                params.put("date_of_birth", dob);
+                params.put("address", addr);
+
                 return params;
             }
         };
@@ -200,10 +223,15 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
     }
 
     //saving the name to local storage
-    private void saveNameToLocalStorage(String name, int status) {
+    private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, int status) {
         editTextName.setText("");
-        db.addName(name, status);
-        Name n = new Name(name, status);
+        editTextmiddlename.setText("");
+        editTextDob.setText("");
+        editTextAddress.setText("");
+
+
+        db.addName(given_name,middle_name, date_of_birth, address, status);
+        Name n = new Name(given_name, middle_name,date_of_birth , address, status);
         names.add(n);
         refreshList();
     }

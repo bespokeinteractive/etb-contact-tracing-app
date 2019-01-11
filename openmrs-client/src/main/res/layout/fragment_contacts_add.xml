@@ -1,3 +1,16 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+  -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -110,7 +123,7 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/firstname"
+                            android:id="@+id/editTextName"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:focusable="true"
@@ -128,7 +141,7 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/middlename"
+                            android:id="@+id/editTextmiddlename"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:focusable="true"
@@ -141,40 +154,6 @@
 
                 </LinearLayout>
 
-
-                <TextView
-                    android:id="@+id/fnameerror"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_weight="1"
-                    android:padding="2dp"
-                    android:text="@string/emptyerror"
-                    android:textColor="@color/red"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/textInputLayoutSurname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
-                    <EditText
-                        android:id="@+id/surname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:focusable="true"
-                        android:hint="@string/reg_surname_hint"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPersonName|textCapWords"
-                        android:maxLines="1"
-                        android:textSize="14sp" />
-                </android.support.design.widget.TextInputLayout>
 
                 <TextView
                     android:id="@+id/lnameerror"
@@ -215,7 +194,7 @@
                     android:visibility="gone" />
 
                 <RadioGroup
-                    android:id="@+id/gender"
+                    android:id="@+id/radiogender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -269,7 +248,7 @@
                         android:layout_alignParentTop="true">
 
                         <EditText
-                            android:id="@+id/dob"
+                            android:id="@+id/editTextDob"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
@@ -297,15 +276,6 @@
                         android:background="@drawable/btn_date_picker"/>
                 </RelativeLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/label_or"
-                    android:textColor="#777"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -315,42 +285,6 @@
                     android:layout_marginRight="20dp"
                     android:weightSum="2"
                     android:baselineAligned="false">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayoutEstyr"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <EditText
-                            android:id="@+id/estyr"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="true"
-                            android:hint="@string/estyr"
-                            android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:maxLines="1"
-                            android:textSize="14sp" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayoutEstmonth"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <EditText
-                            android:id="@+id/estmonth"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="true"
-                            android:hint="@string/estmonth"
-                            android:imeOptions="actionNext"
-                            android:inputType="number"
-                            android:maxLines="1"
-                            android:textSize="14sp" />
-                    </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
             </LinearLayout>
@@ -417,7 +351,7 @@
                     >
 
                     <EditText
-                        android:id="@+id/addr1"
+                        android:id="@+id/editTextAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -438,66 +372,20 @@
                     >
 
                     <EditText
-                        android:id="@+id/addr2"
+                        android:id="@+id/editTextMobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="20dp"
                         android:focusable="true"
-                        android:hint="@string/addr2_hint"
+                        android:hint="mobile"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords"
                         android:maxLines="1"
                         android:textSize="14sp" />
                 </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:baselineAligned="false">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayoutCountry"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/country"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="true"
-                            android:hint="@string/patient_country_label"
-                            android:imeOptions="actionNext"
-                            android:inputType="textCapSentences"
-                            android:maxLines="1"
-                            android:textSize="14sp" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayoutState"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/state"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="true"
-                            android:hint="@string/patient_state_label"
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:textSize="14sp" />
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -515,11 +403,11 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/city"
+                            android:id="@+id/editTextLocation"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:focusable="true"
-                            android:hint="@string/patient_city_label"
+                            android:hint="Location"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:maxLines="1"
@@ -533,12 +421,12 @@
                         android:layout_weight="1">
 
                         <EditText
-                            android:id="@+id/editTextName"
+                            android:id="@+id/editTextProximity"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
                             android:focusable="true"
-                            android:hint="@string/patient_postal_label"
+                            android:hint="Proximity"
                             android:imeOptions="actionDone"
                             android:inputType="text"
                             android:maxLines="1"
@@ -546,7 +434,6 @@
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
-
             </LinearLayout>
 
             <Button
@@ -554,7 +441,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_submit_selector"
-                android:text="@string/action_register_patient"
+                android:text="@string/action_register_contact"
                 android:textColor="@color/white" />
 
             <Button
@@ -562,7 +449,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_submit_selector"
-                android:text="@string/action_register_patient"
+                android:text="@string/action_open_contact"
                 android:textColor="@color/white" />
 
             <ListView

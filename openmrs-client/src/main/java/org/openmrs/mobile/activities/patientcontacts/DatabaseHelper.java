@@ -12,7 +12,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "android";
     public static final String TABLE_NAME = "names";
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_GIVEN_NAME = "given_name";
+    public static final String COLUMN_MIDDLE_NAME = "middle_name";
+    public static final String COLUMN_DOB = "date_of_birth";
+    public static final String COLUMN_ADDRESS = "address";
+
+
     public static final String COLUMN_STATUS = "status";
 
     //database version
@@ -27,10 +32,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + TABLE_NAME
-                + "(" + COLUMN_ID +
-                " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME +
-                " VARCHAR, " + COLUMN_STATUS +
-                " TINYINT);";
+                + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUMN_GIVEN_NAME + " VARCHAR, " +
+                        COLUMN_MIDDLE_NAME + "VARCHAR," +
+                        COLUMN_DOB + "VARCHAR," +
+                        COLUMN_ADDRESS + "VARCHAR," +
+                        COLUMN_STATUS + " TINYINT);";
         db.execSQL(sql);
     }
 
@@ -44,16 +51,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
      * This method is taking two arguments
-     * first one is the name that is to be saved
+     * first one is the s that is to be saved
      * second one is the status
-     * 0 means the name is synced with the server
-     * 1 means the name is not synced with the server
+     * 0 means the s is synced with the server
+     * 1 means the s is not synced with the server
      * */
-    public boolean addName(String name, int status) {
+    public boolean addName(String given_name, String middle_name, String date_of_birth, String address, int status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COLUMN_NAME, name);
+        contentValues.put(COLUMN_GIVEN_NAME, given_name);
+        contentValues.put(COLUMN_MIDDLE_NAME, middle_name);
+        contentValues.put(COLUMN_DOB, date_of_birth);
+        contentValues.put(COLUMN_ADDRESS, address);
         contentValues.put(COLUMN_STATUS, status);
 
 

@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -36,7 +37,7 @@ import java.util.Map;
 public class lists extends AppCompatActivity {
 
 
-    public static final String URL_SAVE_NAME = "http://192.168.0.110/SyncData/saveName.php";
+    public static final String URL_SAVE_NAME = "http://192.168.0.100/SyncData/saveName.php";
 
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
@@ -45,8 +46,11 @@ public class lists extends AppCompatActivity {
     private Button buttonSave;
     private EditText editTextName;
     private ListView listViewNames;
-
+    private EditText editTextmiddlename;
     private Button buttonOpen;
+    public EditText editTextDob;
+    public EditText editTextAddress;
+
 
     //List to store all the names
     private List<Name> names;
@@ -76,7 +80,12 @@ public class lists extends AppCompatActivity {
 
         buttonSave = (Button) findViewById(R.id.buttonSave);
         editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextmiddlename = (EditText) findViewById(R.id.editTextmiddlename);
+        editTextDob = (EditText) findViewById(R.id.editTextDob);
+        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
+
         listViewNames = (ListView) findViewById(R.id.listViewNames);
+
 
         buttonOpen = (Button) findViewById(R.id.buttonOpen);
 
@@ -109,7 +118,10 @@ public class lists extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             do {
                 Name name = new Name(
-                        cursor.getString(cursor.getColumnIndex(org.openmrs.mobile.activities.patientcontacts.DatabaseHelper.COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(org.openmrs.mobile.activities.patientcontacts.DatabaseHelper.COLUMN_GIVEN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MIDDLE_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DOB)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS)),
                         cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUS))
                 );
                 names.add(name);
@@ -136,6 +148,9 @@ public class lists extends AppCompatActivity {
         progressDialog.show();
 
         final String name = editTextName.getText().toString().trim();
+        final String midname = editTextmiddlename.getText().toString().trim();
+        final String dob = editTextDob.getText().toString().trim();
+        final String addr = editTextAddress.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
                 new Response.Listener<String>() {
@@ -147,11 +162,11 @@ public class lists extends AppCompatActivity {
                             if (!obj.getBoolean("error")) {
                                 //if there is a success
                                 //storing the name to sqlite with status synced
-                                saveNameToLocalStorage(name, NAME_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname, dob, addr, NAME_SYNCED_WITH_SERVER);
                             } else {
                                 //if there is some error
                                 //saving the name to sqlite with status unsynced
-                                saveNameToLocalStorage(name, NAME_NOT_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob,addr, NAME_NOT_SYNCED_WITH_SERVER);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -163,13 +178,16 @@ public class lists extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
                         //on error storing the name to sqlite with status unsynced
-                        saveNameToLocalStorage(name, NAME_NOT_SYNCED_WITH_SERVER);
+                        saveNameToLocalStorage(name, midname, dob, addr,NAME_NOT_SYNCED_WITH_SERVER);
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("name", name);
+                params.put("given_name", name);
+                params.put("middle_name", midname);
+                params.put("date_of_birth", dob);
+                params.put("address", addr);
                 return params;
             }
         };
@@ -178,13 +196,16 @@ public class lists extends AppCompatActivity {
     }
 
     //saving the name to local storage
-    private void saveNameToLocalStorage(String name, int status) {
+    private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, int status) {
         editTextName.setText("");
-        db.addName(name, status);
-        Name n = new Name(name, status);
+        editTextmiddlename.setText("");
+
+        db.addName(given_name,middle_name, date_of_birth, address, status);
+        Name n = new Name(given_name, middle_name,date_of_birth , address, status);
         names.add(n);
         refreshList();
     }
+
     public void openLists(){
         Intent intent = new Intent(this, org.openmrs.mobile.activities.patientcontacts.lists.class);
         startActivity(intent);
