@@ -9,9 +9,14 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -38,7 +43,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
      * make sure you are using the ip instead of localhost
      * it will not work if you are using localhost
      * */
-    public static final String URL_SAVE_NAME = "http://192.168.0.100/SyncData/saveName.php";
+    public static final String URL_SAVE_NAME = "http://192.168.0.104/SyncData/saveName.php";
 
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
@@ -52,7 +57,25 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
     private TextView patientDetailsNames;
     public EditText editTextDob;
     public EditText editTextAddress;
-
+    public EditText editTextMobile;
+    public EditText editTextLocation;
+    public EditText editTextProximity;
+    public RadioGroup radioSexGroup;
+    public RadioButton editRadioBtngender;
+    public RadioButton male;
+    public RadioButton female;
+    public Spinner mSpinner;
+    private Spinner relationshispinner;
+    private Spinner previousTreatmentspinner;
+    private Spinner chestxrayspinner;
+    private Spinner latenttestspinner;
+    private Spinner resultlbispinner;
+    String[] mLocations = {"Select Location of contact with index case", "Household", "Workplace", "Healthcare facility", "Prison" , "Educational institution"};
+    String[] relationship = {"Select Relationship With Patient", " Spouse/partner", "Son/daughter", "Mother/Father", "Brother/Sister" , "Another relative in household" , "Unrelated within household" ,"Unrelated outside household"};
+    String[] previousTreatments = {"Previous TB Treatment For Contact", "Never", "Yes - treated for active TB", "Yes - with preventive therapy"};
+    String[] chestxray = {"X Ray Result", "NA (X-ray not done)", "CXR not available (though requested)", "CXR normal", "CXR abnormal suggestive of TB" , "CXR abnormal not TB"};
+    String[] latenttest = {"Test for latent TB infection?", "Not done", "Tuberculin skin test", "IGRA"};
+    String[] resultlbi = {"Result of LTBI testing", "NA (not done)","Negative","Indeterminate","positive"};
 
     //List to store all the names
     private List<Name> names;
@@ -86,9 +109,102 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         editTextmiddlename = (EditText) findViewById(R.id.editTextmiddlename);
         editTextDob = (EditText) findViewById(R.id.editTextDob);
         editTextAddress = (EditText) findViewById(R.id.editTextAddress);
+        editTextMobile = (EditText) findViewById(R.id.editTextMobile);
+        editTextLocation = (EditText) findViewById(R.id.editTextLocation);
+        editTextProximity = (EditText) findViewById(R.id.editTextProximity);
+        radioSexGroup = (RadioGroup) findViewById(R.id.radiogender);
+        male = (RadioButton) findViewById(R.id.male);
+        female = (RadioButton) findViewById(R.id.female);
+        mSpinner = findViewById(R.id.spinner);
 
+        Spinner  mSpinner = (Spinner)findViewById(R.id.spinner);
+        Spinner  relationshispinner = (Spinner)findViewById(R.id.relationshispinner);
+        Spinner  previousTreatmentspinner = (Spinner)findViewById(R.id.previousTreatmentspinner);
+        Spinner  chestxrayspinner = (Spinner)findViewById(R.id.chestxrayspinner);
+        Spinner  latenttestspinner = (Spinner)findViewById(R.id.latenttestspinner);
+        Spinner  resultlbispinner = (Spinner)findViewById(R.id.resultlbispinner);
 
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, mLocations);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(aa);
+
+        ArrayAdapter bb = new ArrayAdapter(this, android.R.layout.simple_spinner_item, relationship);
+        bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        relationshispinner.setAdapter(bb);
+
+        ArrayAdapter cc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, previousTreatments);
+        cc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        previousTreatmentspinner.setAdapter(cc);
+
+        ArrayAdapter dd = new ArrayAdapter(this, android.R.layout.simple_spinner_item, chestxray);
+        dd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        chestxrayspinner.setAdapter(dd);
+
+        ArrayAdapter ee = new ArrayAdapter(this, android.R.layout.simple_spinner_item, latenttest);
+        ee.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        latenttestspinner.setAdapter(ee);
+
+        ArrayAdapter ff = new ArrayAdapter(this, android.R.layout.simple_spinner_item, resultlbi);
+        ff.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        resultlbispinner.setAdapter(ff);
+
+        int selectedId = radioSexGroup.getCheckedRadioButtonId();
+        editRadioBtngender = (RadioButton) findViewById(selectedId);
         patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
+
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        relationshispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        previousTreatmentspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        chestxrayspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        latenttestspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        resultlbispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+
 
 
         editTextName.setText(getIntent().getStringExtra("mytext"));
@@ -96,9 +212,11 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         patientDetailsNames.setText(getIntent().getStringExtra("idnt"));
         editTextDob.setText(getIntent().getStringExtra("dobtxt"));
         editTextAddress.setText(getIntent().getStringExtra("addresstxt"));
-
-
-
+        editTextMobile.setText(getIntent().getStringExtra("editmobiletxt"));
+        editTextLocation.setText(getIntent().getStringExtra("editlocationtxt"));
+        editTextProximity.setText(getIntent().getStringExtra("editproximitytxt"));
+        String editRadioBtngender = getIntent().getStringExtra("editgendertxt");
+        String text = mSpinner.getSelectedItem().toString();
 
         listViewNames = (ListView) findViewById(R.id.listViewNames);
 
@@ -148,6 +266,16 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MIDDLE_NAME)),
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DOB)),
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MOBILE)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LOCATION)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PROXIMITY)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_GENDER)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PATIENT_INDEX_ID)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_RELATIONSHIP)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PREVIOUS_TB_TREATMENT)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CHEST_XRAY_RESULTS)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LATENT_INFECTION_RESULTS)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS)),
                         cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUS))
                 );
                 names.add(name);
@@ -177,6 +305,18 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         final String midname = editTextmiddlename.getText().toString().trim();
         final String dob = editTextDob.getText().toString().trim();
         final String addr = editTextAddress.getText().toString().trim();
+        final String mob = editTextMobile.getText().toString().trim();
+//        final String loc = editTextLocation.getText().toString().trim();
+        final String prox = editTextProximity.getText().toString().trim();
+        final String gend = getIntent().getStringExtra("editgendertxt");
+        final String patid = patientDetailsNames.getText().toString().trim();
+        final String loc = getIntent().getStringExtra("editlocationdrp");
+        final String rel = getIntent().getStringExtra("editrelationshispinnerdrp");
+        final String prev = getIntent().getStringExtra("editpreviousTreatmentspinnerdrp");
+        final String xry = getIntent().getStringExtra("editchestxrayspinnerdrp");
+        final String lat = getIntent().getStringExtra("editlatenttestspinnerdrp");
+        final String lbi = getIntent().getStringExtra("editresultlbispinnerdrp");
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
                 new Response.Listener<String>() {
@@ -188,11 +328,11 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                             if (!obj.getBoolean("error")) {
                                 //if there is a success
                                 //storing the name to sqlite with status synced
-                                saveNameToLocalStorage(name, midname,dob, addr,  NAME_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob, addr, mob,loc,prox, gend, patid,rel,prev,xry,lat,lbi, NAME_SYNCED_WITH_SERVER);
                             } else {
                                 //if there is some error
                                 //saving the name to sqlite with status unsynced
-                                saveNameToLocalStorage(name, midname,dob ,addr, NAME_NOT_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob ,addr,mob ,loc, prox, gend,patid,rel,prev,xry,lat,lbi, NAME_NOT_SYNCED_WITH_SERVER);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -204,7 +344,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
                         //on error storing the name to sqlite with status unsynced
-                        saveNameToLocalStorage(name, midname,dob, addr, NAME_NOT_SYNCED_WITH_SERVER);
+                        saveNameToLocalStorage(name, midname,dob, addr,mob,loc,prox, gend, patid ,rel,prev,xry,lat,lbi,NAME_NOT_SYNCED_WITH_SERVER);
                     }
                 }) {
             @Override
@@ -214,6 +354,17 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                 params.put("middle_name", midname);
                 params.put("date_of_birth", dob);
                 params.put("address", addr);
+                params.put("mobile", mob);
+                params.put("location", loc);
+                params.put("proximity", prox);
+                params.put("gender", gend);
+                params.put("index_id", patid);
+                params.put("relationship", rel);
+                params.put("previous_treatment_tb_contact", prev);
+                params.put("chest_xray_result", xry);
+                params.put("lantent_infection_test", lat);
+                params.put("lbi_result", lbi);
+
 
                 return params;
             }
@@ -223,15 +374,23 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
     }
 
     //saving the name to local storage
-    private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, int status) {
+    private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, String mobile , String location, String proximity, String gend , String index_id ,
+                                        String relationship ,String previous_treatment_tb_contact,
+                                        String chest_xray_result , String lantent_infection_test ,
+                                        String lbi_result ,int status) {
         editTextName.setText("");
         editTextmiddlename.setText("");
         editTextDob.setText("");
         editTextAddress.setText("");
+        editTextMobile.setText("");
+        editTextLocation.setText("");
+        editTextProximity.setText("");
 
 
-        db.addName(given_name,middle_name, date_of_birth, address, status);
-        Name n = new Name(given_name, middle_name,date_of_birth , address, status);
+        db.addName(given_name,middle_name, date_of_birth, address,  mobile , location , proximity , gend , index_id,
+                relationship, previous_treatment_tb_contact , chest_xray_result , lantent_infection_test , lbi_result, status);
+        Name n = new Name(given_name, middle_name,date_of_birth , address, mobile , location , proximity, gend , index_id,
+                relationship, previous_treatment_tb_contact , chest_xray_result , lantent_infection_test , lbi_result, status);
         names.add(n);
         refreshList();
     }

@@ -28,9 +28,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.openmrs.mobile.R;
@@ -67,6 +72,24 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
     private EditText editTextmiddlename;
     private EditText editTextDob;
     private EditText editTextAddress;
+    private EditText editTextMobile;
+    private EditText editTextLocation;
+    private EditText editTextProximity;
+    private RadioGroup radioSexGroup;
+    private RadioButton radioBtngender;
+    private Spinner mSpinner;
+    private Spinner relationshispinner;
+    private Spinner previousTreatmentspinner;
+    private Spinner chestxrayspinner;
+    private Spinner latenttestspinner;
+    private Spinner resultlbispinner;
+    String[] mLocations = {"Select Location of contact with index case", "Household", "Workplace", "Healthcare facility", "Prison" , "Educational institution"};
+    String[] relationship = {"Select Relationship With Patient", " Spouse/partner", "Son/daughter", "Mother/Father", "Brother/Sister" , "Another relative in household" , "Unrelated within household" ,"Unrelated outside household"};
+    String[] previousTreatments = {"Previous TB Treatment For Contact", "Never", "Yes - treated for active TB", "Yes - with preventive therapy"};
+    String[] chestxray = {"X Ray Result", "NA (X-ray not done)", "CXR not available (though requested)", "CXR normal", "CXR abnormal suggestive of TB" , "CXR abnormal not TB"};
+    String[] latenttest = {"Test for latent TB infection?", "Not done", "Tuberculin skin test", "IGRA"};
+    String[] resultlbi = {"Result of LTBI testing", "NA (not done)","Negative","Indeterminate","positive"};
+
 
     private List<Name> names;
 
@@ -115,7 +138,10 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
         mClass = new MainActivity();
 
 
-        //    pasted from here
+
+
+
+       //    pasted from here
 
     }
 
@@ -150,11 +176,91 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 //       pasted from here
 
 
-
         FontsUtil.setFont((ViewGroup) rootView);
 
         super.onCreate(savedInstanceState);
         buttonOpen = (Button) rootView.findViewById(R.id.buttonOpen);
+        Spinner  mSpinner = (Spinner)rootView.findViewById(R.id.spinner);
+        Spinner  relationshispinner = (Spinner)rootView.findViewById(R.id.relationshispinner);
+        Spinner  previousTreatmentspinner = (Spinner)rootView.findViewById(R.id.previousTreatmentspinner);
+        Spinner  chestxrayspinner = (Spinner)rootView.findViewById(R.id.chestxrayspinner);
+        Spinner  latenttestspinner = (Spinner)rootView.findViewById(R.id.latenttestspinner);
+        Spinner  resultlbispinner = (Spinner)rootView.findViewById(R.id.resultlbispinner);
+
+
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        relationshispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        previousTreatmentspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        chestxrayspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        latenttestspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        resultlbispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter aa = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, mLocations);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(aa);
+
+        ArrayAdapter bb = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, relationship);
+        bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        relationshispinner.setAdapter(bb);
+
+        ArrayAdapter cc = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, previousTreatments);
+        cc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        previousTreatmentspinner.setAdapter(cc);
+
+        ArrayAdapter dd = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, chestxray);
+        dd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        chestxrayspinner.setAdapter(dd);
+
+        ArrayAdapter ee = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, latenttest);
+        ee.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        latenttestspinner.setAdapter(ee);
+
+        ArrayAdapter ff = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, resultlbi);
+        ff.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        resultlbispinner.setAdapter(ff);
 
         buttonOpen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +270,8 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 
             }
         });
+
+
         buttonSave = (Button) rootView.findViewById(R.id.buttonSave);
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +284,15 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
              TextView  patientDetailsNames  = (TextView) rootView.findViewById(R.id.patientDetailsNames);
              EditText  editdob  = (EditText) rootView.findViewById(R.id.editTextDob);
              EditText  editaddress  = (EditText) rootView.findViewById(R.id.editTextAddress);
+             EditText  editmobile  = (EditText) rootView.findViewById(R.id.editTextMobile);
+             EditText  editlocation  = (EditText) rootView.findViewById(R.id.editTextLocation);
+             EditText  editproximity  = (EditText) rootView.findViewById(R.id.editTextProximity);
+
+             RadioGroup radioSexGroup = (RadioGroup) rootView.findViewById(R.id.radiogender);
+
+             int selectedId = radioSexGroup.getCheckedRadioButtonId();
+             radioBtngender = (RadioButton) rootView.findViewById(selectedId);
+
 
 
              String text = editname.getText().toString();
@@ -183,14 +300,35 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
              String middlenametxt = editTextmiddlename.getText().toString();
              String dobtxt = editdob.getText().toString();
              String addresstxt = editaddress.getText().toString();
+             String editmobiletxt = editmobile.getText().toString();
+             String editlocationtxt = editlocation.getText().toString();
+             String editproximitytxt = editproximity.getText().toString();
+             String editgendertxt = radioBtngender.getText().toString();
+             String editlocationdrp = mSpinner.getSelectedItem().toString();
+             String editrelationshispinnerdrp = relationshispinner.getSelectedItem().toString();
+             String editpreviousTreatmentspinnerdrp = previousTreatmentspinner.getSelectedItem().toString();
+             String editchestxrayspinnerdrp = chestxrayspinner.getSelectedItem().toString();
+             String editlatenttestspinnerdrp = latenttestspinner.getSelectedItem().toString();
+             String editresultlbispinnerdrp = resultlbispinner.getSelectedItem().toString();
 
-
-               Intent intent = new Intent(v.getContext(), MainActivity.class);
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
                 intent.putExtra("mytext",text);
                 intent.putExtra("idnt",text1);
                 intent.putExtra("middlenametxt", middlenametxt );
                 intent.putExtra("dobtxt", dobtxt );
                 intent.putExtra("addresstxt", addresstxt );
+                intent.putExtra("editmobiletxt", editmobiletxt );
+                intent.putExtra("editlocationtxt", editlocationtxt );
+                intent.putExtra("editproximitytxt", editproximitytxt );
+                intent.putExtra("editgendertxt", editgendertxt );
+                intent.putExtra("editlocationdrp", editlocationdrp );
+                intent.putExtra("editrelationshispinnerdrp", editrelationshispinnerdrp );
+                intent.putExtra("editpreviousTreatmentspinnerdrp", editpreviousTreatmentspinnerdrp );
+                intent.putExtra("editchestxrayspinnerdrp", editchestxrayspinnerdrp );
+                intent.putExtra("editlatenttestspinnerdrp", editlatenttestspinnerdrp );
+                intent.putExtra("editresultlbispinnerdrp", editresultlbispinnerdrp );
+
+
 
                 startActivity(intent);
 

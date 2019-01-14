@@ -16,6 +16,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MIDDLE_NAME = "middle_name";
     public static final String COLUMN_DOB = "date_of_birth";
     public static final String COLUMN_ADDRESS = "address";
+    public static final String COLUMN_MOBILE = "mobile";
+    public static final String COLUMN_LOCATION = "location";
+    public static final String COLUMN_PROXIMITY = "proximity";
+    public static final String COLUMN_GENDER = "gender";
+    public static final String COLUMN_PATIENT_INDEX_ID = "index_id";
+    public static final String COLUMN_RELATIONSHIP = "relationship";
+    public static final String COLUMN_PREVIOUS_TB_TREATMENT = "previous_treatment_tb_contact";
+    public static final String COLUMN_CHEST_XRAY_RESULTS = "chest_xray_result";
+    public static final String COLUMN_LATENT_INFECTION_RESULTS = "lantent_infection_test";
+    public static final String COLUMN_LBI_RESULTS = "lbi_result";
+
+
 
 
     public static final String COLUMN_STATUS = "status";
@@ -37,6 +49,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_MIDDLE_NAME + "VARCHAR," +
                         COLUMN_DOB + "VARCHAR," +
                         COLUMN_ADDRESS + "VARCHAR," +
+                        COLUMN_MOBILE + "VARCHAR," +
+                        COLUMN_LOCATION + "VARCHAR," +
+                        COLUMN_PROXIMITY + "VARCHAR," +
+                        COLUMN_GENDER + "VARCHAR," +
+                        COLUMN_PATIENT_INDEX_ID + "VARCHAR," +
+                COLUMN_RELATIONSHIP+ "VARCHAR," +
+                COLUMN_PREVIOUS_TB_TREATMENT + "VARCHAR," +
+                COLUMN_CHEST_XRAY_RESULTS + "VARCHAR," +
+                COLUMN_LATENT_INFECTION_RESULTS + "VARCHAR," +
+                COLUMN_LBI_RESULTS + "VARCHAR," +
                         COLUMN_STATUS + " TINYINT);";
         db.execSQL(sql);
     }
@@ -56,7 +78,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * 0 means the s is synced with the server
      * 1 means the s is not synced with the server
      * */
-    public boolean addName(String given_name, String middle_name, String date_of_birth, String address, int status) {
+    public boolean addName(String given_name, String middle_name, String date_of_birth, String address, String mobile, String location, String proximity, String gender , String index_id ,
+                           String relationship,String previous_treatment_tb_contact, String chest_xray_result ,
+                           String lantent_infection_test ,String lbi_result ,int status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -64,6 +88,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_MIDDLE_NAME, middle_name);
         contentValues.put(COLUMN_DOB, date_of_birth);
         contentValues.put(COLUMN_ADDRESS, address);
+        contentValues.put(COLUMN_MOBILE, mobile);
+        contentValues.put(COLUMN_LOCATION, location);
+        contentValues.put(COLUMN_PROXIMITY, proximity);
+        contentValues.put(COLUMN_GENDER, gender);
+        contentValues.put(COLUMN_PATIENT_INDEX_ID, index_id);
+        contentValues.put(COLUMN_RELATIONSHIP, relationship);
+        contentValues.put(COLUMN_PREVIOUS_TB_TREATMENT, previous_treatment_tb_contact);
+        contentValues.put(COLUMN_CHEST_XRAY_RESULTS, chest_xray_result);
+        contentValues.put(COLUMN_LATENT_INFECTION_RESULTS, lantent_infection_test);
+        contentValues.put(COLUMN_LBI_RESULTS, lbi_result);
+
+
         contentValues.put(COLUMN_STATUS, status);
 
 

@@ -54,7 +54,18 @@ public class NetworkStateChecker extends BroadcastReceiver {
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_GIVEN_NAME)),
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MIDDLE_NAME)),
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DOB)),
-                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS))
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ADDRESS)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_MOBILE)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LOCATION)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PROXIMITY)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_GENDER)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PATIENT_INDEX_ID)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_RELATIONSHIP)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PREVIOUS_TB_TREATMENT)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CHEST_XRAY_RESULTS)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LATENT_INFECTION_RESULTS)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS))
+
                         );
                     } while (cursor.moveToNext());
                 }
@@ -68,7 +79,8 @@ public class NetworkStateChecker extends BroadcastReceiver {
      * if the name is successfully sentnal
      * we will update the status as synced in SQLite
      * */
-    private void saveName(final int id, final String name , final String midname ,final String dob , final String addr ) {
+    private void saveName(final int id, final String name , final String midname ,final String dob , final String addr , final String mob, final String loc , final String gend, final String patid, final String prox,
+    final String rel, final String prev,final String xry,final String lat,final String lbi ) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, org.openmrs.mobile.activities.patientcontacts.MainActivity.URL_SAVE_NAME,
                 new Response.Listener<String>() {
                     @Override
@@ -96,10 +108,36 @@ public class NetworkStateChecker extends BroadcastReceiver {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("name", name);
-                params.put("midname", midname);
-                params.put("dob", dob);
-                params.put("addr", addr);
+//                params.put("name", name);
+//                params.put("midname", midname);
+//                params.put("dob", dob);
+//                params.put("addr", addr);
+//                params.put("mob", mob);
+//                params.put("loc", loc);
+//                params.put("prox", prox);
+//                params.put("gend", gend);
+//                params.put("patid", patid);
+//                params.put("rel", rel);
+//                params.put("prev", prev);
+//                params.put("xry", xry);
+//                params.put("lat", lat);
+//                params.put("lbi", lbi);
+
+                params.put("given_name", name);
+                params.put("middle_name", midname);
+                params.put("date_of_birth", dob);
+                params.put("address", addr);
+                params.put("mobile", mob);
+                params.put("location", loc);
+                params.put("proximity", prox);
+                params.put("gender", gend);
+                params.put("index_id", patid);
+                params.put("relationship", rel);
+                params.put("previous_treatment_tb_contact", prev);
+                params.put("chest_xray_result", xry);
+                params.put("lantent_infection_test", lat);
+                params.put("lbi_result", lbi);
+
                 return params;
             }
         };
