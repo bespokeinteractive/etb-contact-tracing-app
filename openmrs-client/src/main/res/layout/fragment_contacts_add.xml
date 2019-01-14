@@ -526,6 +526,273 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/card"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:text="Contact's Screening Tests"
+                android:textColor="@color/primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="Cough"
+                android:textColor="#555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <RadioGroup
+                    android:id="@+id/radiocough"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radioCoughyes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioCoughno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="Fever"
+                android:textColor="#555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <RadioGroup
+                    android:id="@+id/radiofever"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radioFeveryes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioFeverno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="Weight Loss"
+                android:textColor="#555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <RadioGroup
+                    android:id="@+id/radioweightloss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radioWeightlossyes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioWeightlossno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="Night Sweats"
+                android:textColor="#555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <RadioGroup
+                    android:id="@+id/radionightsweats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radioNightsweatyes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioNightsweatno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="Chest X-ray"
+                android:textColor="#555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <RadioGroup
+                    android:id="@+id/radiochestxray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radioChestXraydone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Done" />
+
+                    <RadioButton
+                        android:id="@+id/radioChestXray_not_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Done" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="Offer Preventiie Therapy?"
+                android:textColor="#555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:weightSum="2"
+                android:baselineAligned="false">
+
+                <RadioGroup
+                    android:id="@+id/radio_offer_preventive_therapy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radioPreventive_TherapyYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioPreventive_TherapyNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+        </LinearLayout>
             <Button
                 android:id="@+id/buttonSave"
                 android:layout_width="match_parent"

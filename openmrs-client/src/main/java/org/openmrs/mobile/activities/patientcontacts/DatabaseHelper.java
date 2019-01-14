@@ -26,11 +26,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CHEST_XRAY_RESULTS = "chest_xray_result";
     public static final String COLUMN_LATENT_INFECTION_RESULTS = "lantent_infection_test";
     public static final String COLUMN_LBI_RESULTS = "lbi_result";
-
-
-
+    public static final String COLUMN_COUGH = "cough";
+    public static final String COLUMN_FEVER = "fever";
+    public static final String COLUMN_WEIGHTLOSS = "weight_loss";
 
     public static final String COLUMN_STATUS = "status";
+
 
     //database version
     private static final int DB_VERSION = 1;
@@ -54,12 +55,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_PROXIMITY + "VARCHAR," +
                         COLUMN_GENDER + "VARCHAR," +
                         COLUMN_PATIENT_INDEX_ID + "VARCHAR," +
-                COLUMN_RELATIONSHIP+ "VARCHAR," +
-                COLUMN_PREVIOUS_TB_TREATMENT + "VARCHAR," +
-                COLUMN_CHEST_XRAY_RESULTS + "VARCHAR," +
-                COLUMN_LATENT_INFECTION_RESULTS + "VARCHAR," +
-                COLUMN_LBI_RESULTS + "VARCHAR," +
+                        COLUMN_RELATIONSHIP+ "VARCHAR," +
+                        COLUMN_PREVIOUS_TB_TREATMENT + "VARCHAR," +
+                        COLUMN_CHEST_XRAY_RESULTS + "VARCHAR," +
+                        COLUMN_LATENT_INFECTION_RESULTS + "VARCHAR," +
+                        COLUMN_LBI_RESULTS + "VARCHAR," +
+                        COLUMN_COUGH + "VARCHAR," +
+                        COLUMN_FEVER + "VARCHAR," +
+                        COLUMN_WEIGHTLOSS + "VARCHAR," +
+
                         COLUMN_STATUS + " TINYINT);";
+                        //COLUMN_COUGH + " VARCHAR);";
+
         db.execSQL(sql);
     }
 
@@ -80,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * */
     public boolean addName(String given_name, String middle_name, String date_of_birth, String address, String mobile, String location, String proximity, String gender , String index_id ,
                            String relationship,String previous_treatment_tb_contact, String chest_xray_result ,
-                           String lantent_infection_test ,String lbi_result ,int status) {
+                           String lantent_infection_test ,String lbi_result, String cough, String fever, String weight_loss, int status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -98,9 +105,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_CHEST_XRAY_RESULTS, chest_xray_result);
         contentValues.put(COLUMN_LATENT_INFECTION_RESULTS, lantent_infection_test);
         contentValues.put(COLUMN_LBI_RESULTS, lbi_result);
-
+        contentValues.put(COLUMN_COUGH, cough);
+        contentValues.put(COLUMN_FEVER, fever);
+        contentValues.put(COLUMN_WEIGHTLOSS, weight_loss);
 
         contentValues.put(COLUMN_STATUS, status);
+
 
 
         db.insert(TABLE_NAME, null, contentValues);

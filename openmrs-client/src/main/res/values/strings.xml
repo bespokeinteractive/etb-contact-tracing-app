@@ -65,6 +65,12 @@
     <string name="estmonth">Estimated Months</string>
     <string name="capture_photo">Capture photo</string>
 
+
+    <!-- Screening Tests, added by wcr-->
+    <!--<string name="cough">Cough</string>-->
+    <!--<string name="radioCoughyes">Yes</string>-->
+    <!--<string name="radioCoughno">NO</string>-->
+
     <!-- Offline Mode -->
     <string name="offline_mode_unsupported_in_first_login">Offline mode is not supported during first login.Enable online mode and then try again.</string>
     <string name="login_offline_toast_message">You are now in offline mode.</string>

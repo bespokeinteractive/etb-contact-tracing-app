@@ -57,10 +57,23 @@ public class lists extends AppCompatActivity {
     public EditText editTextLocation;
     public EditText editTextProximity;
     public RadioGroup radioSexGroup;
+    public RadioGroup radiocoughGroup;
+    public RadioButton radioCoughno;
+    public RadioButton radioCoughyes;
+    public RadioButton radioBtnCough;
     public RadioButton editRadioBtngender;
     public RadioButton male;
     public RadioButton female;
+    public RadioButton radioBtnFever;
+    private RadioGroup radioFeverGroup;
+    public RadioButton radioFeveryes;
+    public RadioButton radioFeverno;
+    public RadioButton radioBtnWeight_loss;
+    private RadioGroup radioWeight_lossGroup;
+    public RadioButton radioWeightlossyes;
+    public RadioButton radioWeightlossno;
     private TextView patientDetailsNames;
+
 
 
     //List to store all the names
@@ -100,9 +113,28 @@ public class lists extends AppCompatActivity {
         radioSexGroup = (RadioGroup) findViewById(R.id.radiogender);
         male = (RadioButton) findViewById(R.id.male);
         female = (RadioButton) findViewById(R.id.female);
+        radiocoughGroup= (RadioGroup) findViewById(R.id.radiocough);
+        radioCoughno = (RadioButton) findViewById(R.id.radioCoughno);
+        radioCoughyes = (RadioButton) findViewById(R.id.radioCoughyes);
+        radioFeverGroup= (RadioGroup) findViewById(R.id.radiofever);
+        radioFeveryes = (RadioButton) findViewById(R.id.radioFeveryes);
+        radioFeverno = (RadioButton) findViewById(R.id.radioFeverno);
+        radioWeight_lossGroup= (RadioGroup) findViewById(R.id.radioweightloss);
+        radioWeightlossyes = (RadioButton) findViewById(R.id.radioWeightlossyes);
+        radioWeightlossno = (RadioButton) findViewById(R.id.radioWeightlossno);
 
         int selectedId = radioSexGroup.getCheckedRadioButtonId();
         editRadioBtngender = (RadioButton) findViewById(selectedId);
+
+        int selectedCoughId = radiocoughGroup.getCheckedRadioButtonId();
+        radioBtnCough = (RadioButton) findViewById(selectedCoughId);
+
+        int selectedFeverId = radioFeverGroup.getCheckedRadioButtonId();
+        radioBtnFever = (RadioButton) findViewById(selectedFeverId);
+
+        int selectedWeight_lossId = radioWeight_lossGroup.getCheckedRadioButtonId();
+        radioBtnWeight_loss = (RadioButton) findViewById(selectedWeight_lossId);
+
         listViewNames = (ListView) findViewById(R.id.listViewNames);
 
         patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
@@ -154,6 +186,10 @@ public class lists extends AppCompatActivity {
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CHEST_XRAY_RESULTS)),
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LATENT_INFECTION_RESULTS)),
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_COUGH)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FEVER)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_WEIGHTLOSS)),
+
                         cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUS))
 
                 );
@@ -194,6 +230,10 @@ public class lists extends AppCompatActivity {
         final String xry = getIntent().getStringExtra("editchestxrayspinnerdrp");
         final String lat = getIntent().getStringExtra("editlatenttestspinnerdrp");
         final String lbi = getIntent().getStringExtra("editresultlbispinnerdrp");
+        final String cou = getIntent().getStringExtra("editcoughtxt");
+        final String fev = getIntent().getStringExtra("editfevertxt");
+        final String weight = getIntent().getStringExtra("editweight_losstxt");
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
                 new Response.Listener<String>() {
@@ -205,12 +245,12 @@ public class lists extends AppCompatActivity {
                             if (!obj.getBoolean("error")) {
                                 //if there is a success
                                 //storing the name to sqlite with status synced
-                                saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi, NAME_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_SYNCED_WITH_SERVER);
 
                             } else {
                                 //if there is some error
                                 //saving the name to sqlite with status unsynced
-                                saveNameToLocalStorage(name, midname,dob,addr,mob,loc,prox,gend, patid,rel,prev,xry,lat,lbi, NAME_NOT_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob,addr,mob,loc,prox,gend, patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_NOT_SYNCED_WITH_SERVER);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -222,7 +262,7 @@ public class lists extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
                         //on error storing the name to sqlite with status unsynced
-                        saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi, NAME_NOT_SYNCED_WITH_SERVER);
+                        saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_NOT_SYNCED_WITH_SERVER);
                     }
                 }) {
             @Override
@@ -242,6 +282,10 @@ public class lists extends AppCompatActivity {
                 params.put("chest_xray_result", xry);
                 params.put("lantent_infection_test", lat);
                 params.put("lbi_result", lbi);
+                params.put("cough", cou);
+                params.put("fever", fev);
+                params.put("weight_loss", weight);
+
                 return params;
             }
         };
@@ -253,7 +297,7 @@ public class lists extends AppCompatActivity {
     private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, String mobile, String location , String proximity, String gend , String index_id,
                                         String relationship ,String previous_treatment_tb_contact,
                                         String chest_xray_result , String lantent_infection_test ,
-                                        String lbi_result ,  int status) {
+                                        String lbi_result, String cough, String fever, String weight_loss, int status) {
         editTextName.setText("");
         editTextmiddlename.setText("");
         editTextAddress.setText("");
@@ -262,9 +306,9 @@ public class lists extends AppCompatActivity {
         editTextProximity.setText("");
 
         db.addName(given_name,middle_name, date_of_birth, address, mobile , location, proximity, gend, index_id, relationship ,previous_treatment_tb_contact, chest_xray_result , lantent_infection_test,
-                lbi_result ,status);
+                lbi_result,cough, fever, weight_loss, status);
         Name n = new Name(given_name, middle_name,date_of_birth , address, mobile , location, proximity,gend, relationship ,previous_treatment_tb_contact, chest_xray_result , lantent_infection_test,
-                lbi_result, index_id ,status);
+                lbi_result, index_id,cough, fever, weight_loss, status);
         names.add(n);
         refreshList();
     }

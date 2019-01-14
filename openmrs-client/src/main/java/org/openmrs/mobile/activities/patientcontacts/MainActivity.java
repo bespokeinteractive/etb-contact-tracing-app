@@ -43,7 +43,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
      * make sure you are using the ip instead of localhost
      * it will not work if you are using localhost
      * */
-    public static final String URL_SAVE_NAME = "http://192.168.0.104/SyncData/saveName.php";
+    public static final String URL_SAVE_NAME = "http://192.168.1.247/etb/etb_contact.php";
 
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
@@ -60,10 +60,23 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
     public EditText editTextMobile;
     public EditText editTextLocation;
     public EditText editTextProximity;
-    public RadioGroup radioSexGroup;
     public RadioButton editRadioBtngender;
+    public RadioGroup radioSexGroup;
     public RadioButton male;
     public RadioButton female;
+    public RadioButton radioBtnCough;
+    public RadioGroup radiocoughGroup;
+    public RadioButton radioCoughno;
+    public RadioButton radioCoughyes;
+    public RadioButton radioBtnFever;
+    private RadioGroup radioFeverGroup;
+    public RadioButton radioFeveryes;
+    public RadioButton radioFeverno;
+    public RadioButton radioBtnWeight_loss;
+    private RadioGroup radioWeight_lossGroup;
+    public RadioButton radioWeightlossyes;
+    public RadioButton radioWeightlossno;
+
     public Spinner mSpinner;
     private Spinner relationshispinner;
     private Spinner previousTreatmentspinner;
@@ -115,6 +128,16 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         radioSexGroup = (RadioGroup) findViewById(R.id.radiogender);
         male = (RadioButton) findViewById(R.id.male);
         female = (RadioButton) findViewById(R.id.female);
+        radiocoughGroup= (RadioGroup) findViewById(R.id.radiocough);
+        radioCoughno = (RadioButton) findViewById(R.id.radioCoughno);
+        radioCoughyes = (RadioButton) findViewById(R.id.radioCoughyes);
+        radioFeverGroup= (RadioGroup) findViewById(R.id.radiofever);
+        radioFeveryes = (RadioButton) findViewById(R.id.radioFeveryes);
+        radioFeverno = (RadioButton) findViewById(R.id.radioFeverno);
+        radioWeight_lossGroup= (RadioGroup) findViewById(R.id.radioweightloss);
+        radioWeightlossyes = (RadioButton) findViewById(R.id.radioWeightlossyes);
+        radioWeightlossno = (RadioButton) findViewById(R.id.radioWeightlossno);
+
         mSpinner = findViewById(R.id.spinner);
 
         Spinner  mSpinner = (Spinner)findViewById(R.id.spinner);
@@ -148,9 +171,21 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         ff.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         resultlbispinner.setAdapter(ff);
 
+
+        patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
+
+
         int selectedId = radioSexGroup.getCheckedRadioButtonId();
         editRadioBtngender = (RadioButton) findViewById(selectedId);
-        patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
+
+        int selectedCoughId = radiocoughGroup.getCheckedRadioButtonId();
+        radioBtnCough = (RadioButton) findViewById(selectedCoughId);
+
+        int selectedFeverId = radioFeverGroup.getCheckedRadioButtonId();
+        radioBtnFever = (RadioButton) findViewById(selectedFeverId);
+
+        int selectedWeight_lossId = radioWeight_lossGroup.getCheckedRadioButtonId();
+        radioBtnWeight_loss = (RadioButton) findViewById(selectedWeight_lossId);
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -216,8 +251,11 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         editTextLocation.setText(getIntent().getStringExtra("editlocationtxt"));
         editTextProximity.setText(getIntent().getStringExtra("editproximitytxt"));
         String editRadioBtngender = getIntent().getStringExtra("editgendertxt");
-        String text = mSpinner.getSelectedItem().toString();
+        String radioBtnCough = getIntent().getStringExtra("radioBtnCough");
+        String radioBtnFever = getIntent().getStringExtra("radioBtnFever");
+        String radioBtnWeight_loss = getIntent().getStringExtra("radioBtnWeight_loss");
 
+        String text = mSpinner.getSelectedItem().toString();
         listViewNames = (ListView) findViewById(R.id.listViewNames);
 
         buttonOpen = (Button) findViewById(R.id.buttonOpen);
@@ -276,7 +314,13 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CHEST_XRAY_RESULTS)),
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LATENT_INFECTION_RESULTS)),
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_COUGH)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FEVER)),
+                        cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_WEIGHTLOSS)),
+
                         cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUS))
+
+
                 );
                 names.add(name);
             } while (cursor.moveToNext());
@@ -316,6 +360,10 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         final String xry = getIntent().getStringExtra("editchestxrayspinnerdrp");
         final String lat = getIntent().getStringExtra("editlatenttestspinnerdrp");
         final String lbi = getIntent().getStringExtra("editresultlbispinnerdrp");
+        final String cou = getIntent().getStringExtra("editcoughtxt");
+        final String fev = getIntent().getStringExtra("editfevertxt");
+        final String weight = getIntent().getStringExtra("editweight_losstxt");
+
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
@@ -328,11 +376,11 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                             if (!obj.getBoolean("error")) {
                                 //if there is a success
                                 //storing the name to sqlite with status synced
-                                saveNameToLocalStorage(name, midname,dob, addr, mob,loc,prox, gend, patid,rel,prev,xry,lat,lbi, NAME_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob, addr, mob,loc,prox, gend, patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_SYNCED_WITH_SERVER);
                             } else {
                                 //if there is some error
                                 //saving the name to sqlite with status unsynced
-                                saveNameToLocalStorage(name, midname,dob ,addr,mob ,loc, prox, gend,patid,rel,prev,xry,lat,lbi, NAME_NOT_SYNCED_WITH_SERVER);
+                                saveNameToLocalStorage(name, midname,dob ,addr,mob ,loc, prox, gend,patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_NOT_SYNCED_WITH_SERVER);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -344,7 +392,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
                         //on error storing the name to sqlite with status unsynced
-                        saveNameToLocalStorage(name, midname,dob, addr,mob,loc,prox, gend, patid ,rel,prev,xry,lat,lbi,NAME_NOT_SYNCED_WITH_SERVER);
+                        saveNameToLocalStorage(name, midname,dob, addr,mob,loc,prox, gend, patid ,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_NOT_SYNCED_WITH_SERVER);
                     }
                 }) {
             @Override
@@ -364,6 +412,9 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                 params.put("chest_xray_result", xry);
                 params.put("lantent_infection_test", lat);
                 params.put("lbi_result", lbi);
+                params.put("cough", cou);
+                params.put("fever", fev);
+                params.put("weight_loss", weight);
 
 
                 return params;
@@ -375,9 +426,9 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
 
     //saving the name to local storage
     private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, String mobile , String location, String proximity, String gend , String index_id ,
-                                        String relationship ,String previous_treatment_tb_contact,
+                                        String relationship , String previous_treatment_tb_contact,
                                         String chest_xray_result , String lantent_infection_test ,
-                                        String lbi_result ,int status) {
+                                        String lbi_result, String cough, String fever, String weight_loss, int status) {
         editTextName.setText("");
         editTextmiddlename.setText("");
         editTextDob.setText("");
@@ -387,10 +438,10 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         editTextProximity.setText("");
 
 
-        db.addName(given_name,middle_name, date_of_birth, address,  mobile , location , proximity , gend , index_id,
-                relationship, previous_treatment_tb_contact , chest_xray_result , lantent_infection_test , lbi_result, status);
-        Name n = new Name(given_name, middle_name,date_of_birth , address, mobile , location , proximity, gend , index_id,
-                relationship, previous_treatment_tb_contact , chest_xray_result , lantent_infection_test , lbi_result, status);
+        db.addName(given_name,middle_name, date_of_birth, address, mobile , location, proximity, gend, index_id, relationship ,previous_treatment_tb_contact, chest_xray_result , lantent_infection_test,
+                lbi_result ,cough, fever, weight_loss, status);
+        Name n = new Name(given_name, middle_name,date_of_birth , address, mobile , location, proximity,gend, relationship ,previous_treatment_tb_contact, chest_xray_result , lantent_infection_test,
+                lbi_result, index_id,cough, fever, weight_loss, status);
         names.add(n);
         refreshList();
     }

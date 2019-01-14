@@ -64,8 +64,10 @@ public class NetworkStateChecker extends BroadcastReceiver {
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PREVIOUS_TB_TREATMENT)),
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CHEST_XRAY_RESULTS)),
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LATENT_INFECTION_RESULTS)),
-                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS))
-
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_COUGH)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FEVER)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_WEIGHTLOSS))
                         );
                     } while (cursor.moveToNext());
                 }
@@ -80,7 +82,7 @@ public class NetworkStateChecker extends BroadcastReceiver {
      * we will update the status as synced in SQLite
      * */
     private void saveName(final int id, final String name , final String midname ,final String dob , final String addr , final String mob, final String loc , final String gend, final String patid, final String prox,
-    final String rel, final String prev,final String xry,final String lat,final String lbi ) {
+    final String rel, final String prev,final String xry,final String lat,final String lbi, final String cou, final String fev, final String weight ) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, org.openmrs.mobile.activities.patientcontacts.MainActivity.URL_SAVE_NAME,
                 new Response.Listener<String>() {
                     @Override
@@ -137,6 +139,9 @@ public class NetworkStateChecker extends BroadcastReceiver {
                 params.put("chest_xray_result", xry);
                 params.put("lantent_infection_test", lat);
                 params.put("lbi_result", lbi);
+                params.put("cough", cou);
+                params.put("fever", fev);
+                params.put("weight_loss", weight);
 
                 return params;
             }

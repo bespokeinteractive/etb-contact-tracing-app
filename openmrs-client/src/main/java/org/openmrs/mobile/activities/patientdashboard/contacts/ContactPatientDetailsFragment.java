@@ -75,8 +75,14 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
     private EditText editTextMobile;
     private EditText editTextLocation;
     private EditText editTextProximity;
-    private RadioGroup radioSexGroup;
     private RadioButton radioBtngender;
+    private RadioGroup radioSexGroup;
+    private RadioButton radioBtnCough;
+    private RadioGroup radiocoughGroup;
+    private RadioButton radioBtnFever;
+    private RadioGroup radioFeverGroup;
+    private RadioButton radioBtnWeight_loss;
+    private RadioGroup radioWeight_lossGroup;
     private Spinner mSpinner;
     private Spinner relationshispinner;
     private Spinner previousTreatmentspinner;
@@ -96,7 +102,7 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
     private PatientDashboardActivity mPatientDashboardActivity;
 
 
-    public static final String URL_SAVE_NAME = "http://192.168.0.101/SyncData/saveName.php";
+    public static final String URL_SAVE_NAME = "http://192.168.1.247/etb/etb_contact.php";
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
     public static final int NAME_SYNCED_WITH_SERVER = 1;
     public static final int NAME_NOT_SYNCED_WITH_SERVER = 0;
@@ -137,16 +143,9 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 
         mClass = new MainActivity();
 
-
-
-
-
        //    pasted from here
 
     }
-
-
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -289,9 +288,20 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
              EditText  editproximity  = (EditText) rootView.findViewById(R.id.editTextProximity);
 
              RadioGroup radioSexGroup = (RadioGroup) rootView.findViewById(R.id.radiogender);
-
              int selectedId = radioSexGroup.getCheckedRadioButtonId();
              radioBtngender = (RadioButton) rootView.findViewById(selectedId);
+
+             RadioGroup radiocoughGroup = (RadioGroup) rootView.findViewById(R.id.radiocough);
+             int selectedCoughId = radiocoughGroup.getCheckedRadioButtonId();
+             radioBtnCough = (RadioButton) rootView.findViewById(selectedCoughId);
+
+             RadioGroup radioFeverGroup = (RadioGroup) rootView.findViewById(R.id.radiofever);
+             int selectedFeverId = radioFeverGroup.getCheckedRadioButtonId();
+             radioBtnFever = (RadioButton) rootView.findViewById(selectedFeverId);
+
+             RadioGroup radioWeight_lossGroup = (RadioGroup) rootView.findViewById(R.id.radioweightloss);
+             int selectedWeight_lossId = radioWeight_lossGroup.getCheckedRadioButtonId();
+             radioBtnWeight_loss = (RadioButton) rootView.findViewById(selectedWeight_lossId);
 
 
 
@@ -310,6 +320,9 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
              String editchestxrayspinnerdrp = chestxrayspinner.getSelectedItem().toString();
              String editlatenttestspinnerdrp = latenttestspinner.getSelectedItem().toString();
              String editresultlbispinnerdrp = resultlbispinner.getSelectedItem().toString();
+             String editcoughtxt = radioBtnCough.getText().toString();
+             String editfevertxt = radioBtnFever.getText().toString();
+             String editweight_losstxt = radioBtnWeight_loss.getText().toString();
 
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 intent.putExtra("mytext",text);
@@ -327,6 +340,9 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
                 intent.putExtra("editchestxrayspinnerdrp", editchestxrayspinnerdrp );
                 intent.putExtra("editlatenttestspinnerdrp", editlatenttestspinnerdrp );
                 intent.putExtra("editresultlbispinnerdrp", editresultlbispinnerdrp );
+                intent.putExtra("editcoughtxt", editcoughtxt );
+                intent.putExtra("editfevertxt", editfevertxt );
+                intent.putExtra("editweight_losstxt", editweight_losstxt );
 
 
 
@@ -338,15 +354,11 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 //
 //                main.saveNameToServer();
 
-
-
             }
         });
 
         return rootView;
     }
-
-
 
     @Override
     public void resolvePatientDataDisplay(final Patient patient) {
