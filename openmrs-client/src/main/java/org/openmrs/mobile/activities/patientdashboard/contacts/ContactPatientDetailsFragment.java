@@ -89,12 +89,12 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
     private Spinner chestxrayspinner;
     private Spinner latenttestspinner;
     private Spinner resultlbispinner;
-    String[] mLocations = {"Select Location of contact with index case", "Household", "Workplace", "Healthcare facility", "Prison" , "Educational institution"};
-    String[] relationship = {"Select Relationship With Patient", " Spouse/partner", "Son/daughter", "Mother/Father", "Brother/Sister" , "Another relative in household" , "Unrelated within household" ,"Unrelated outside household"};
-    String[] previousTreatments = {"Previous TB Treatment For Contact", "Never", "Yes - treated for active TB", "Yes - with preventive therapy"};
-    String[] chestxray = {"X Ray Result", "NA (X-ray not done)", "CXR not available (though requested)", "CXR normal", "CXR abnormal suggestive of TB" , "CXR abnormal not TB"};
-    String[] latenttest = {"Test for latent TB infection?", "Not done", "Tuberculin skin test", "IGRA"};
-    String[] resultlbi = {"Result of LTBI testing", "NA (not done)","Negative","Indeterminate","positive"};
+    String[] mLocations = {"Select", "Household", "Workplace", "Healthcare facility", "Prison" , "Educational institution"};
+    String[] relationship = {"Select", " Spouse/partner", "Son/daughter", "Mother/Father", "Brother/Sister" , "Another relative in household" , "Unrelated within household" ,"Unrelated outside household"};
+    String[] previousTreatments = {"Select", "Never", "Yes - treated for active TB", "Yes - with preventive therapy"};
+    String[] chestxray = {"Select", "NA (X-ray not done)", "CXR not available (though requested)", "CXR normal", "CXR abnormal suggestive of TB" , "CXR abnormal not TB"};
+    String[] latenttest = {"Select", "Not done", "Tuberculin skin test", "IGRA"};
+    String[] resultlbi = {"Select", "NA (not done)","Negative","Indeterminate","positive"};
 
 
     private List<Name> names;

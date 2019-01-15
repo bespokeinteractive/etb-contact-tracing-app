@@ -110,20 +110,6 @@ public class NetworkStateChecker extends BroadcastReceiver {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-//                params.put("name", name);
-//                params.put("midname", midname);
-//                params.put("dob", dob);
-//                params.put("addr", addr);
-//                params.put("mob", mob);
-//                params.put("loc", loc);
-//                params.put("prox", prox);
-//                params.put("gend", gend);
-//                params.put("patid", patid);
-//                params.put("rel", rel);
-//                params.put("prev", prev);
-//                params.put("xry", xry);
-//                params.put("lat", lat);
-//                params.put("lbi", lbi);
 
                 params.put("given_name", name);
                 params.put("middle_name", midname);

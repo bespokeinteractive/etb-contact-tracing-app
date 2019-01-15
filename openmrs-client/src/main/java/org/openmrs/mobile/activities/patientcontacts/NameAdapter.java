@@ -41,15 +41,15 @@ public class NameAdapter extends ArrayAdapter<org.openmrs.mobile.activities.pati
         ImageView imageViewStatus = (ImageView) listViewItem.findViewById(R.id.imageViewStatus);
 
         //getting the current name
-        Name given_name = names.get(position);
+        Name name = names.get(position);
 
         //setting the name to textview
-        textViewName.setText(given_name.getName());
+        textViewName.setText(name.getName());
 
         //if the synced status is 0 displaying
         //queued icon
         //else displaying synced icon
-        if (given_name.getStatus() == 0)
+        if (name.getStatus() == 0)
             imageViewStatus.setBackgroundResource(R.drawable.stopwatch);
         else
             imageViewStatus.setBackgroundResource(R.drawable.success);

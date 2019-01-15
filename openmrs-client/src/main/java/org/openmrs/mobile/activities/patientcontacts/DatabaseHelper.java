@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Constants for Database name, table name, and column names
-    public static final String DB_NAME = "android";
+    public static final String DB_NAME = "patient_contacts";
     public static final String TABLE_NAME = "names";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_GIVEN_NAME = "given_name";
@@ -26,9 +26,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CHEST_XRAY_RESULTS = "chest_xray_result";
     public static final String COLUMN_LATENT_INFECTION_RESULTS = "lantent_infection_test";
     public static final String COLUMN_LBI_RESULTS = "lbi_result";
+
     public static final String COLUMN_COUGH = "cough";
     public static final String COLUMN_FEVER = "fever";
     public static final String COLUMN_WEIGHTLOSS = "weight_loss";
+
 
     public static final String COLUMN_STATUS = "status";
 

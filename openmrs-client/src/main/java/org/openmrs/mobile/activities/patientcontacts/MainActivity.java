@@ -43,8 +43,8 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
      * make sure you are using the ip instead of localhost
      * it will not work if you are using localhost
      * */
-    public static final String URL_SAVE_NAME = "http://192.168.1.247/etb/etb_contact.php";
 
+    public static final String URL_SAVE_NAME = "http://192.168.0.103/SyncData/saveName.php";
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
 
@@ -417,6 +417,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
                 params.put("weight_loss", weight);
 
 
+
                 return params;
             }
         };
@@ -456,4 +457,3 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         startActivity(intent);
     }
 }
-

@@ -8,13 +8,15 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -26,31 +28,33 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openmrs.mobile.R;
-import org.openmrs.mobile.activities.patientcontacts.DatabaseHelper;
-import org.openmrs.mobile.activities.patientcontacts.Name;
-import org.openmrs.mobile.activities.patientcontacts.NameAdapter;
-import org.openmrs.mobile.activities.patientcontacts.NetworkStateChecker;
-import org.openmrs.mobile.activities.patientcontacts.VolleySingleton;
+
+import org.openmrs.mobile.activities.ACBaseActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class lists extends AppCompatActivity {
+public class lists extends ACBaseActivity implements View.OnClickListener {
 
-
-    public static final String URL_SAVE_NAME = "http://192.168.0.104/SyncData/saveName.php";
+    /*
+     * this is the url to our webservice
+     * make sure you are using the ip instead of localhost
+     * it will not work if you are using localhost
+     * */
+    public static final String URL_SAVE_NAME = "http://192.168.0.103/SyncData/saveName.php";
 
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
 
     //View objects
     private Button buttonSave;
-    private EditText editTextName;
+    public EditText editTextName;
     private ListView listViewNames;
-    private EditText editTextmiddlename;
+    public EditText editTextmiddlename;
     private Button buttonOpen;
+    private TextView patientDetailsNames;
     public EditText editTextDob;
     public EditText editTextAddress;
     public EditText editTextMobile;
@@ -72,7 +76,18 @@ public class lists extends AppCompatActivity {
     private RadioGroup radioWeight_lossGroup;
     public RadioButton radioWeightlossyes;
     public RadioButton radioWeightlossno;
-    private TextView patientDetailsNames;
+    public Spinner mSpinner;
+    private Spinner relationshispinner;
+    private Spinner previousTreatmentspinner;
+    private Spinner chestxrayspinner;
+    private Spinner latenttestspinner;
+    private Spinner resultlbispinner;
+    String[] mLocations = {"Select Location of contact with index case", "Household", "Workplace", "Healthcare facility", "Prison" , "Educational institution"};
+    String[] relationship = {"Select Relationship With Patient", " Spouse/partner", "Son/daughter", "Mother/Father", "Brother/Sister" , "Another relative in household" , "Unrelated within household" ,"Unrelated outside household"};
+    String[] previousTreatments = {"Previous TB Treatment For Contact", "Never", "Yes - treated for active TB", "Yes - with preventive therapy"};
+    String[] chestxray = {"X Ray Result", "NA (X-ray not done)", "CXR not available (though requested)", "CXR normal", "CXR abnormal suggestive of TB" , "CXR abnormal not TB"};
+    String[] latenttest = {"Test for latent TB infection?", "Not done", "Tuberculin skin test", "IGRA"};
+    String[] resultlbi = {"Result of LTBI testing", "NA (not done)","Negative","Indeterminate","positive"};
 
 
 
@@ -95,7 +110,7 @@ public class lists extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lists);
+        setContentView(R.layout.activity_main);
         registerReceiver(new NetworkStateChecker(), new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         //initializing views and objects
@@ -103,6 +118,7 @@ public class lists extends AppCompatActivity {
         names = new ArrayList<>();
 
         buttonSave = (Button) findViewById(R.id.buttonSave);
+
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextmiddlename = (EditText) findViewById(R.id.editTextmiddlename);
         editTextDob = (EditText) findViewById(R.id.editTextDob);
@@ -136,12 +152,121 @@ public class lists extends AppCompatActivity {
         radioBtnWeight_loss = (RadioButton) findViewById(selectedWeight_lossId);
 
         listViewNames = (ListView) findViewById(R.id.listViewNames);
+        mSpinner = findViewById(R.id.spinner);
+
+        Spinner  mSpinner = (Spinner)findViewById(R.id.spinner);
+        Spinner  relationshispinner = (Spinner)findViewById(R.id.relationshispinner);
+        Spinner  previousTreatmentspinner = (Spinner)findViewById(R.id.previousTreatmentspinner);
+        Spinner  chestxrayspinner = (Spinner)findViewById(R.id.chestxrayspinner);
+        Spinner  latenttestspinner = (Spinner)findViewById(R.id.latenttestspinner);
+        Spinner  resultlbispinner = (Spinner)findViewById(R.id.resultlbispinner);
+
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, mLocations);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(aa);
+
+        ArrayAdapter bb = new ArrayAdapter(this, android.R.layout.simple_spinner_item, relationship);
+        bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        relationshispinner.setAdapter(bb);
+
+        ArrayAdapter cc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, previousTreatments);
+        cc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        previousTreatmentspinner.setAdapter(cc);
+
+        ArrayAdapter dd = new ArrayAdapter(this, android.R.layout.simple_spinner_item, chestxray);
+        dd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        chestxrayspinner.setAdapter(dd);
+
+        ArrayAdapter ee = new ArrayAdapter(this, android.R.layout.simple_spinner_item, latenttest);
+        ee.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        latenttestspinner.setAdapter(ee);
+
+        ArrayAdapter ff = new ArrayAdapter(this, android.R.layout.simple_spinner_item, resultlbi);
+        ff.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        resultlbispinner.setAdapter(ff);
 
         patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
-        patientDetailsNames.setText(getIntent().getStringExtra("idnt"));
 
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        relationshispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        previousTreatmentspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        chestxrayspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        latenttestspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        resultlbispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+
+
+
+        editTextName.setText(getIntent().getStringExtra("mytext"));
+        editTextmiddlename.setText(getIntent().getStringExtra("middlenametxt"));
+        patientDetailsNames.setText(getIntent().getStringExtra("idnt"));
+        editTextDob.setText(getIntent().getStringExtra("dobtxt"));
+        editTextAddress.setText(getIntent().getStringExtra("addresstxt"));
+        editTextMobile.setText(getIntent().getStringExtra("editmobiletxt"));
+        editTextLocation.setText(getIntent().getStringExtra("editlocationtxt"));
+        editTextProximity.setText(getIntent().getStringExtra("editproximitytxt"));
+        String editRadioBtngender = getIntent().getStringExtra("editgendertxt");
+        String text = mSpinner.getSelectedItem().toString();
+
+        listViewNames = (ListView) findViewById(R.id.listViewNames);
 
         buttonOpen = (Button) findViewById(R.id.buttonOpen);
+
+
+        //adding click listener to button
+        buttonSave.setOnClickListener(this);
+
+        buttonOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLists();
+            }
+        });
 
 
         //calling the method to load all the stored names
@@ -153,7 +278,7 @@ public class lists extends AppCompatActivity {
             public void onReceive(Context context, Intent intent) {
 
                 //loading the names again
-                loadNames();
+                //loadNames();
             }
         };
 
@@ -191,7 +316,6 @@ public class lists extends AppCompatActivity {
                         cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_WEIGHTLOSS)),
 
                         cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUS))
-
                 );
                 names.add(name);
             } while (cursor.moveToNext());
@@ -211,7 +335,7 @@ public class lists extends AppCompatActivity {
     /*
      * this method is saving the name to ther server
      * */
-    private void saveNameToServer() {
+    public void saveNameToServer() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Saving Name...");
         progressDialog.show();
@@ -221,10 +345,11 @@ public class lists extends AppCompatActivity {
         final String dob = editTextDob.getText().toString().trim();
         final String addr = editTextAddress.getText().toString().trim();
         final String mob = editTextMobile.getText().toString().trim();
-        final String loc = editTextLocation.getText().toString().trim();
+//        final String loc = editTextLocation.getText().toString().trim();
         final String prox = editTextProximity.getText().toString().trim();
-        final String gend = editRadioBtngender.toString().trim();
-        final String patid = editTextProximity.getText().toString().trim();
+        final String gend = getIntent().getStringExtra("editgendertxt");
+        final String patid = patientDetailsNames.getText().toString().trim();
+        final String loc = getIntent().getStringExtra("editlocationdrp");
         final String rel = getIntent().getStringExtra("editrelationshispinnerdrp");
         final String prev = getIntent().getStringExtra("editpreviousTreatmentspinnerdrp");
         final String xry = getIntent().getStringExtra("editchestxrayspinnerdrp");
@@ -233,6 +358,7 @@ public class lists extends AppCompatActivity {
         final String cou = getIntent().getStringExtra("editcoughtxt");
         final String fev = getIntent().getStringExtra("editfevertxt");
         final String weight = getIntent().getStringExtra("editweight_losstxt");
+
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
@@ -245,6 +371,7 @@ public class lists extends AppCompatActivity {
                             if (!obj.getBoolean("error")) {
                                 //if there is a success
                                 //storing the name to sqlite with status synced
+
                                 saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_SYNCED_WITH_SERVER);
 
                             } else {
@@ -262,7 +389,7 @@ public class lists extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
                         //on error storing the name to sqlite with status unsynced
-                        saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_NOT_SYNCED_WITH_SERVER);
+       saveNameToLocalStorage(name, midname, dob, addr, mob,loc,prox,gend,patid,rel,prev,xry,lat,lbi,cou,fev,weight, NAME_NOT_SYNCED_WITH_SERVER);
                     }
                 }) {
             @Override
@@ -286,6 +413,7 @@ public class lists extends AppCompatActivity {
                 params.put("fever", fev);
                 params.put("weight_loss", weight);
 
+
                 return params;
             }
         };
@@ -294,12 +422,14 @@ public class lists extends AppCompatActivity {
     }
 
     //saving the name to local storage
-    private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, String mobile, String location , String proximity, String gend , String index_id,
+    private void saveNameToLocalStorage(String given_name, String middle_name, String date_of_birth, String address, String mobile , String location, String proximity, String gend , String index_id ,
                                         String relationship ,String previous_treatment_tb_contact,
                                         String chest_xray_result , String lantent_infection_test ,
                                         String lbi_result, String cough, String fever, String weight_loss, int status) {
+
         editTextName.setText("");
         editTextmiddlename.setText("");
+        editTextDob.setText("");
         editTextAddress.setText("");
         editTextMobile.setText("");
         editTextLocation.setText("");
@@ -309,13 +439,19 @@ public class lists extends AppCompatActivity {
                 lbi_result,cough, fever, weight_loss, status);
         Name n = new Name(given_name, middle_name,date_of_birth , address, mobile , location, proximity,gend, relationship ,previous_treatment_tb_contact, chest_xray_result , lantent_infection_test,
                 lbi_result, index_id,cough, fever, weight_loss, status);
+
+
         names.add(n);
         refreshList();
     }
 
-    public void openLists(){
-        Intent intent = new Intent(this, org.openmrs.mobile.activities.patientcontacts.lists.class);
-        startActivity(intent);
+    @Override
+    public void onClick(View view) {
+        saveNameToServer();
     }
 
+    public void openLists() {
+        Intent intent = new Intent(this, lists.class);
+        startActivity(intent);
+    }
 }

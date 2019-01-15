@@ -94,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
+                android:visibility="invisible"
                 android:background="@drawable/card">
 
                 <ImageView
@@ -103,6 +104,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
                     android:layout_margin="@dimen/dashboard_icon_margin"
+                    android:visibility="invisible"
                     android:contentDescription="@string/dashboard_registry_icon_label" />
 
                 <TextView
@@ -115,6 +117,7 @@
                     android:layout_marginBottom="@dimen/dashboard_text_bottom_margin"
                     android:layout_marginTop="@dimen/dashboard_text_top_margin"
                     android:text="@string/action_register_patient"
+                    android:visibility="invisible"
                     android:textSize="@dimen/dashboard_text_size" />
             </RelativeLayout>
 
@@ -124,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
+                android:visibility="invisible"
                 android:background="@drawable/card">
 
                 <ImageView
@@ -133,6 +137,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
                     android:layout_margin="@dimen/dashboard_icon_margin"
+                    android:visibility="invisible"
                     android:contentDescription="@string/dashboard_registry_icon_label" />
 
                 <TextView
@@ -145,6 +150,7 @@
                     android:layout_marginBottom="@dimen/dashboard_text_bottom_margin"
                     android:layout_marginTop="@dimen/dashboard_text_top_margin"
                     android:text="@string/dashboard_forms_icon_label"
+                    android:visibility="invisible"
                     android:textSize="@dimen/dashboard_text_size" />
             </RelativeLayout>
         </TableRow>
@@ -157,6 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:background="@drawable/card">
 
             <ImageView
@@ -166,6 +173,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:layout_margin="@dimen/dashboard_icon_margin"
+                android:visibility="invisible"
                 android:contentDescription="@string/dashboard_registry_icon_label" />
 
             <TextView
@@ -177,6 +185,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/dashboard_text_bottom_margin"
                 android:layout_marginTop="@dimen/dashboard_text_top_margin"
+                android:visibility="invisible"
                 android:text="Register Contact"
                 android:textSize="@dimen/dashboard_text_size" />
         </RelativeLayout>
