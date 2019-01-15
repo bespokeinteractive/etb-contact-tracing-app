@@ -83,6 +83,13 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
     private RadioGroup radioFeverGroup;
     private RadioButton radioBtnWeight_loss;
     private RadioGroup radioWeight_lossGroup;
+    private RadioButton radioBtnNight_Sweats;
+    private RadioGroup radioNight_sweatsGroup;
+    private RadioButton radioBtnChest_xray;
+    private RadioGroup radioChest_xrayGroup;
+    private RadioButton radioBtnPreventivetherapy;
+    private RadioGroup radioPreventive_therapyGroup;
+
     private Spinner mSpinner;
     private Spinner relationshispinner;
     private Spinner previousTreatmentspinner;
@@ -303,6 +310,17 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
              int selectedWeight_lossId = radioWeight_lossGroup.getCheckedRadioButtonId();
              radioBtnWeight_loss = (RadioButton) rootView.findViewById(selectedWeight_lossId);
 
+              RadioGroup radioNight_sweatsGroup = (RadioGroup) rootView.findViewById(R.id.radionightsweats);
+              int selectedNight_sweatsId = radioNight_sweatsGroup.getCheckedRadioButtonId();
+                radioBtnNight_Sweats = (RadioButton) rootView.findViewById(selectedNight_sweatsId);
+
+              RadioGroup radioChest_xrayGroup = (RadioGroup) rootView.findViewById(R.id.radiochestxray);
+              int selectedChest_xrayId = radioChest_xrayGroup.getCheckedRadioButtonId();
+                radioBtnChest_xray = (RadioButton) rootView.findViewById(selectedChest_xrayId);
+
+             RadioGroup radioPreventive_therapyGroup = (RadioGroup) rootView.findViewById(R.id.radio_offer_preventive_therapy);
+             int selectedPreventive_therapyId = radioPreventive_therapyGroup.getCheckedRadioButtonId();
+                radioBtnPreventivetherapy = (RadioButton) rootView.findViewById(selectedPreventive_therapyId);
 
 
              String text = editname.getText().toString();
@@ -323,6 +341,9 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
              String editcoughtxt = radioBtnCough.getText().toString();
              String editfevertxt = radioBtnFever.getText().toString();
              String editweight_losstxt = radioBtnWeight_loss.getText().toString();
+                String editnight_sweatstxt = radioBtnNight_Sweats.getText().toString();
+                String editchest_xraytxt = radioBtnChest_xray.getText().toString();
+                String editpreventive_therapytxt = radioBtnPreventivetherapy.getText().toString();
 
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 intent.putExtra("mytext",text);
@@ -343,6 +364,9 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
                 intent.putExtra("editcoughtxt", editcoughtxt );
                 intent.putExtra("editfevertxt", editfevertxt );
                 intent.putExtra("editweight_losstxt", editweight_losstxt );
+                intent.putExtra("editnight_sweatstxt", editnight_sweatstxt );
+                intent.putExtra("editchest_xraytxt", editchest_xraytxt );
+                intent.putExtra("editpreventive_therapytxt", editpreventive_therapytxt );
 
 
 
@@ -359,6 +383,7 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 
         return rootView;
     }
+
 
     @Override
     public void resolvePatientDataDisplay(final Patient patient) {

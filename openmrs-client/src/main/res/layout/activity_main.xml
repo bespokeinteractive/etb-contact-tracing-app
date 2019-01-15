@@ -855,7 +855,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="20dp"
-                android:text="Offer Preventiie Therapy?"
+                android:text="Offer Preventive Therapy?"
                 android:textColor="#555"
                 android:textSize="18sp"
                 android:textStyle="bold" />

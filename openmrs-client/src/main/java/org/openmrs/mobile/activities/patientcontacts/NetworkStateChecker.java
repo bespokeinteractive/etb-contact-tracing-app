@@ -67,13 +67,17 @@ public class NetworkStateChecker extends BroadcastReceiver {
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LBI_RESULTS)),
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_COUGH)),
                                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FEVER)),
-                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_WEIGHTLOSS))
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_WEIGHTLOSS)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NIGHTSWEATS)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_CHESTXRAY)),
+                                cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PREVENTIVETHERAPY))
                         );
                     } while (cursor.moveToNext());
                 }
             }
         }
     }
+
 
     /*
      * method taking two arguments
@@ -82,7 +86,7 @@ public class NetworkStateChecker extends BroadcastReceiver {
      * we will update the status as synced in SQLite
      * */
     private void saveName(final int id, final String name , final String midname ,final String dob , final String addr , final String mob, final String loc , final String gend, final String patid, final String prox,
-    final String rel, final String prev,final String xry,final String lat,final String lbi, final String cou, final String fev, final String weight ) {
+    final String rel, final String prev,final String xry,final String lat,final String lbi, final String cou, final String fev, final String weight, final String n_sweats, final String c_xray, final String p_therapy ) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, org.openmrs.mobile.activities.patientcontacts.MainActivity.URL_SAVE_NAME,
                 new Response.Listener<String>() {
                     @Override
@@ -128,6 +132,9 @@ public class NetworkStateChecker extends BroadcastReceiver {
                 params.put("cough", cou);
                 params.put("fever", fev);
                 params.put("weight_loss", weight);
+                params.put("night_sweats", n_sweats);
+                params.put("chest_xray", c_xray);
+                params.put("preventive_therapy", p_therapy);
 
                 return params;
             }

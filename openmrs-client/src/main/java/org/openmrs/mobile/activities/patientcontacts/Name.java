@@ -18,6 +18,9 @@ public class Name {
     private String cough;
     private String fever;
     private String weight_loss;
+    private String night_sweats;
+    private String chest_xray;
+    private String preventive_therapy;
 
     private int status;
 
@@ -26,7 +29,7 @@ public class Name {
                          String previous_treatment_tb_contact,
                          String chest_xray_result,
                          String lantent_infection_test,
-                         String lbi_result, String cough, String fever, String weight_loss, int status) {
+                         String lbi_result, String cough, String fever, String weight_loss, String night_sweats, String chest_xray, String preventive_therapy, int status) {
         this.given_name = given_name;
         this.middle_name = middle_name;
         this.date_of_birth = date_of_birth;
@@ -44,6 +47,9 @@ public class Name {
         this.cough = cough;
         this.fever = fever;
         this.weight_loss = weight_loss;
+        this.night_sweats = night_sweats;
+        this.chest_xray = chest_xray;
+        this.preventive_therapy = preventive_therapy;
 
         this.status = status;
     }
@@ -93,6 +99,9 @@ public class Name {
     public String getCough(){return cough; }
     public String getFever(){return fever; }
     public String getWeightloss(){return weight_loss; }
+    public String getNightsweats(){return night_sweats; }
+    public String getChestxray(){return chest_xray; }
+    public String getPreventivetherapy(){return preventive_therapy; }
 
     public int getStatus() {
         return status;

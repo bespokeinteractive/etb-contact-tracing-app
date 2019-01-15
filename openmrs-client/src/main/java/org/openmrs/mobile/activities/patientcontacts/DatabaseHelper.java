@@ -30,6 +30,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COUGH = "cough";
     public static final String COLUMN_FEVER = "fever";
     public static final String COLUMN_WEIGHTLOSS = "weight_loss";
+    public static final String COLUMN_NIGHTSWEATS = "night_sweats";
+    public static final String COLUMN_CHESTXRAY = "chest_xray";
+    public static final String COLUMN_PREVENTIVETHERAPY = "preventive_therapy";
+
 
 
     public static final String COLUMN_STATUS = "status";
@@ -65,6 +69,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_COUGH + "VARCHAR," +
                         COLUMN_FEVER + "VARCHAR," +
                         COLUMN_WEIGHTLOSS + "VARCHAR," +
+                COLUMN_NIGHTSWEATS + "VARCHAR," +
+                COLUMN_CHESTXRAY + "VARCHAR," +
+                COLUMN_PREVENTIVETHERAPY + "VARCHAR," +
 
                         COLUMN_STATUS + " TINYINT);";
                         //COLUMN_COUGH + " VARCHAR);";
@@ -89,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * */
     public boolean addName(String given_name, String middle_name, String date_of_birth, String address, String mobile, String location, String proximity, String gender , String index_id ,
                            String relationship,String previous_treatment_tb_contact, String chest_xray_result ,
-                           String lantent_infection_test ,String lbi_result, String cough, String fever, String weight_loss, int status) {
+                           String lantent_infection_test ,String lbi_result, String cough, String fever, String weight_loss, String night_sweats, String chest_xray, String preventive_therapy, int status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -110,6 +117,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_COUGH, cough);
         contentValues.put(COLUMN_FEVER, fever);
         contentValues.put(COLUMN_WEIGHTLOSS, weight_loss);
+        contentValues.put(COLUMN_NIGHTSWEATS, night_sweats);
+        contentValues.put(COLUMN_CHESTXRAY, chest_xray);
+        contentValues.put(COLUMN_PREVENTIVETHERAPY, preventive_therapy);
 
         contentValues.put(COLUMN_STATUS, status);
 
