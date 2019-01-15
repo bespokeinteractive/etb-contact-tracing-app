@@ -14,6 +14,8 @@ package org.openmrs.mobile.activities.patientdashboard.contacts;
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
+//Values captured in this activity then sent to main activity for verification
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -150,7 +152,6 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 
         mClass = new MainActivity();
 
-       //    pasted from here
 
     }
 
@@ -377,6 +378,10 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 //                main.editTextName.setText(text);
 //
 //                main.saveNameToServer();
+
+                final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                progressDialog.setMessage("Submitting Data for Verification");
+                progressDialog.show();
 
             }
         });

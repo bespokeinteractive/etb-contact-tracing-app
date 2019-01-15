@@ -77,9 +77,7 @@ public class NetworkStateChecker extends BroadcastReceiver {
             }
         }
     }
-
-
-    /*
+  /*
      * method taking two arguments
      * name that is to be saved and id of the name from SQLite
      * if the name is successfully sentnal

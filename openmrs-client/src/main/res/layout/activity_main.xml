@@ -446,16 +446,6 @@
                 android:background="@drawable/card"
                 android:orientation="vertical">
 
-                <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="8dp"-->
-                <!--android:layout_marginStart="8dp"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:text="Contact's Information"-->
-                <!--android:textColor="@color/primary"-->
-                <!--android:textSize="20sp"-->
-                <!--android:textStyle="bold" />-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
