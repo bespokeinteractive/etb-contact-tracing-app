@@ -168,9 +168,10 @@
 
     <!-- Dashboard Activity -->
     <string name="dashboard_search_icon_label">Find Patients</string>
-    <string name="dashboard_registry_icon_label">Register Patient</string>
-    <string name="dashboard_visits_icon_label">Active Visits</string>
-    <string name="dashboard_forms_icon_label">Form Entry</string>
+    <string name="dashboard_registry_icon_label">New Contacts</string>
+    <string name="dashboard_visits_icon_label">View Patients</string>
+    <string name="dashboard_forms_icon_label">Find Contacts</string>
+    <string name="dashboard_visit_icon_label">Add Visit</string>
 
     <!-- find_synced_patients_row layout-->
     <string name="find_patients_row_checkbox_download_label">Download</string>
@@ -261,7 +262,7 @@
 
     <!-- Capture Vitals activity -->
     <string name="action_delete_patient">Delete Patient</string>
-    <string name="action_register_patient">Register Patient</string>
+    <string name="action_register_patient">New Contact</string>
     <string name="action_register_contact">Register Contact</string>
     <string name="action_open_contact">Open Contact</string>
     <string name="failed_to_open_vitals_form">An error occurred. Invalid or corrupted form file.</string>

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Constants for Database name, table name, and column names
-    public static final String DB_NAME = "patient_contacts";
+    public static final String DB_NAME = "mdrt";
     public static final String TABLE_NAME = "names";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_GIVEN_NAME = "given_name";
