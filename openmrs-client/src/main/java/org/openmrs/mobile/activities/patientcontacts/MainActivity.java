@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import org.openmrs.mobile.R;
 
 import org.openmrs.mobile.activities.ACBaseActivity;
+import org.openmrs.mobile.activities.patientdashboard.PatientDashboardActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +45,7 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
      * it will not work if you are using localhost
      * */
 
-    public static final String URL_SAVE_NAME = "http://192.168.0.102/SycData/saveName.php";
+    public static final String URL_SAVE_NAME = "http://192.168.0.102/SyncData/saveName.php";
     //database helper object
     private org.openmrs.mobile.activities.patientcontacts.DatabaseHelper db;
 
@@ -90,11 +91,12 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
     public RadioButton radioPreventive_TherapyNo;
 
     public Spinner mSpinner;
-    private Spinner relationshispinner;
-    private Spinner previousTreatmentspinner;
-    private Spinner chestxrayspinner;
-    private Spinner latenttestspinner;
-    private Spinner resultlbispinner;
+    private Spinner mRelationshispinner;
+    private Spinner mPreviousTreatmentspinner;
+    private Spinner mChestxrayspinner;
+    private Spinner mLatenttestspinner;
+    private Spinner mResultlbispinner;
+
     String[] mLocations = {"Select Location of contact with index case", "Household", "Workplace", "Healthcare facility", "Prison" , "Educational institution"};
     String[] relationship = {"Select Relationship With Patient", " Spouse/partner", "Son/daughter", "Mother/Father", "Brother/Sister" , "Another relative in household" , "Unrelated within household" ,"Unrelated outside household"};
     String[] previousTreatments = {"Previous TB Treatment For Contact", "Never", "Yes - treated for active TB", "Yes - with preventive therapy"};
@@ -161,13 +163,69 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         radioPreventive_TherapyNo = (RadioButton) findViewById(R.id.radioPreventive_TherapyNo);
 
         mSpinner = findViewById(R.id.spinner);
+        mRelationshispinner = findViewById(R.id.relationshispinner);
+        mPreviousTreatmentspinner = findViewById(R.id.previousTreatmentspinner);
+        mChestxrayspinner = findViewById(R.id.chestxrayspinner);
+        mLatenttestspinner = findViewById(R.id.latenttestspinner);
+        mResultlbispinner = findViewById(R.id.resultlbispinner);
 
         Spinner  mSpinner = (Spinner)findViewById(R.id.spinner);
-        Spinner  relationshispinner = (Spinner)findViewById(R.id.relationshispinner);
-        Spinner  previousTreatmentspinner = (Spinner)findViewById(R.id.previousTreatmentspinner);
-        Spinner  chestxrayspinner = (Spinner)findViewById(R.id.chestxrayspinner);
-        Spinner  latenttestspinner = (Spinner)findViewById(R.id.latenttestspinner);
-        Spinner  resultlbispinner = (Spinner)findViewById(R.id.resultlbispinner);
+        Spinner  mRelationshispinner = (Spinner)findViewById(R.id.relationshispinner);
+        Spinner  mPreviousTreatmentspinner = (Spinner)findViewById(R.id.previousTreatmentspinner);
+        Spinner  mChestxrayspinner = (Spinner)findViewById(R.id.chestxrayspinner);
+        Spinner  mLatenttestspinner = (Spinner)findViewById(R.id.latenttestspinner);
+        Spinner  mResultlbispinner = (Spinner)findViewById(R.id.resultlbispinner);
+
+
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        mRelationshispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        mPreviousTreatmentspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+         mChestxrayspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+         mLatenttestspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+         mResultlbispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, mLocations);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -175,121 +233,31 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
 
         ArrayAdapter bb = new ArrayAdapter(this, android.R.layout.simple_spinner_item, relationship);
         bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        relationshispinner.setAdapter(bb);
+        mRelationshispinner.setAdapter(bb);
 
         ArrayAdapter cc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, previousTreatments);
         cc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        previousTreatmentspinner.setAdapter(cc);
+        mPreviousTreatmentspinner.setAdapter(cc);
 
         ArrayAdapter dd = new ArrayAdapter(this, android.R.layout.simple_spinner_item, chestxray);
         dd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        chestxrayspinner.setAdapter(dd);
+        mChestxrayspinner.setAdapter(dd);
 
         ArrayAdapter ee = new ArrayAdapter(this, android.R.layout.simple_spinner_item, latenttest);
         ee.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        latenttestspinner.setAdapter(ee);
+        mLatenttestspinner.setAdapter(ee);
 
         ArrayAdapter ff = new ArrayAdapter(this, android.R.layout.simple_spinner_item, resultlbi);
         ff.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        resultlbispinner.setAdapter(ff);
+        mResultlbispinner.setAdapter(ff);
 
 
         patientDetailsNames = (TextView) findViewById(R.id.patientDetailsNames);
 
 
-        int selectedId = radioSexGroup.getCheckedRadioButtonId();
-        editRadioBtngender = (RadioButton) findViewById(selectedId);
-
-        int selectedCoughId = radiocoughGroup.getCheckedRadioButtonId();
-        radioBtnCough = (RadioButton) findViewById(selectedCoughId);
-
-        int selectedFeverId = radioFeverGroup.getCheckedRadioButtonId();
-        radioBtnFever = (RadioButton) findViewById(selectedFeverId);
-
-        int selectedWeight_lossId = radioWeight_lossGroup.getCheckedRadioButtonId();
-        radioBtnWeight_loss = (RadioButton) findViewById(selectedWeight_lossId);
-
-        int selectedNight_sweatsId = radioNight_sweatsGroup.getCheckedRadioButtonId();
-        radioBtnNight_Sweats = (RadioButton) findViewById(selectedNight_sweatsId);
-
-        int selectedChest_xrayId = radioChest_xrayGroup.getCheckedRadioButtonId();
-        radioBtnChest_xray = (RadioButton) findViewById(selectedChest_xrayId);
-
-        int selectedPreventive_therapyId = radioPreventive_therapyGroup.getCheckedRadioButtonId();
-        radioBtnPreventivetherapy = (RadioButton) findViewById(selectedPreventive_therapyId);
-
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        relationshispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        previousTreatmentspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        chestxrayspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        latenttestspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        resultlbispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id ) {
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
 
-
-
-
-        editTextName.setText(getIntent().getStringExtra("mytext"));
-        editTextmiddlename.setText(getIntent().getStringExtra("middlenametxt"));
         patientDetailsNames.setText(getIntent().getStringExtra("idnt"));
-        editTextDob.setText(getIntent().getStringExtra("dobtxt"));
-        editTextAddress.setText(getIntent().getStringExtra("addresstxt"));
-        editTextMobile.setText(getIntent().getStringExtra("editmobiletxt"));
-        editTextLocation.setText(getIntent().getStringExtra("editlocationtxt"));
-        editTextProximity.setText(getIntent().getStringExtra("editproximitytxt"));
-        String editRadioBtngender = getIntent().getStringExtra("editgendertxt");
-        String radioBtnCough = getIntent().getStringExtra("radioBtnCough");
-        String radioBtnFever = getIntent().getStringExtra("radioBtnFever");
-        String radioBtnWeight_loss = getIntent().getStringExtra("radioBtnWeight_loss");
-        String radioBtnNight_Sweats = getIntent().getStringExtra("radioBtnNight_Sweats");
-        String radioBtnChest_xray = getIntent().getStringExtra("radioBtnChest_xray");
-        String radioBtnPreventivetherapy = getIntent().getStringExtra("radioBtnPreventivetherapy");
-
-        String text = mSpinner.getSelectedItem().toString();
         listViewNames = (ListView) findViewById(R.id.listViewNames);
 
         buttonOpen = (Button) findViewById(R.id.buttonOpen);
@@ -382,6 +350,28 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         progressDialog.setMessage("Saving Name...");
         progressDialog.show();
 
+
+        int selectedId = radioSexGroup.getCheckedRadioButtonId();
+        editRadioBtngender = (RadioButton) findViewById(selectedId);
+
+        int selectedCoughId = radiocoughGroup.getCheckedRadioButtonId();
+        radioBtnCough = (RadioButton) findViewById(selectedCoughId);
+
+        int selectedFeverId = radioFeverGroup.getCheckedRadioButtonId();
+        radioBtnFever = (RadioButton) findViewById(selectedFeverId);
+
+        int selectedWeight_lossId = radioWeight_lossGroup.getCheckedRadioButtonId();
+        radioBtnWeight_loss = (RadioButton) findViewById(selectedWeight_lossId);
+
+        int selectedNight_sweatsId = radioNight_sweatsGroup.getCheckedRadioButtonId();
+        radioBtnNight_Sweats = (RadioButton) findViewById(selectedNight_sweatsId);
+
+        int selectedChest_xrayId = radioChest_xrayGroup.getCheckedRadioButtonId();
+        radioBtnChest_xray = (RadioButton) findViewById(selectedChest_xrayId);
+
+        int selectedPreventive_therapyId = radioPreventive_therapyGroup.getCheckedRadioButtonId();
+        radioBtnPreventivetherapy = (RadioButton) findViewById(selectedPreventive_therapyId);
+
         final String name = editTextName.getText().toString().trim();
         final String midname = editTextmiddlename.getText().toString().trim();
         final String dob = editTextDob.getText().toString().trim();
@@ -389,23 +379,20 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         final String mob = editTextMobile.getText().toString().trim();
 //        final String loc = editTextLocation.getText().toString().trim();
         final String prox = editTextProximity.getText().toString().trim();
-        final String gend = getIntent().getStringExtra("editgendertxt");
+        final String gend = editRadioBtngender.getText().toString().trim();
         final String patid = patientDetailsNames.getText().toString().trim();
-        final String loc = getIntent().getStringExtra("editlocationdrp");
-        final String rel = getIntent().getStringExtra("editrelationshispinnerdrp");
-        final String prev = getIntent().getStringExtra("editpreviousTreatmentspinnerdrp");
-        final String xry = getIntent().getStringExtra("editchestxrayspinnerdrp");
-        final String lat = getIntent().getStringExtra("editlatenttestspinnerdrp");
-        final String lbi = getIntent().getStringExtra("editresultlbispinnerdrp");
-        final String cou = getIntent().getStringExtra("editcoughtxt");
-        final String fev = getIntent().getStringExtra("editfevertxt");
-        final String weight = getIntent().getStringExtra("editweight_losstxt");
-        final String n_sweats = getIntent().getStringExtra("editnight_sweatstxt");
-        final String c_xray = getIntent().getStringExtra("editchest_xraytxt");
-        final String p_therapy = getIntent().getStringExtra("editpreventive_therapytxt");
-
-
-
+        final String loc = mSpinner.getSelectedItem().toString().trim();
+        final String rel =  mRelationshispinner.getSelectedItem().toString().trim();
+        final String prev = mPreviousTreatmentspinner.getSelectedItem().toString().trim();
+        final String xry = mChestxrayspinner.getSelectedItem().toString().trim();
+        final String lat = mLatenttestspinner.getSelectedItem().toString().trim();
+        final String lbi = mResultlbispinner.getSelectedItem().toString().trim();
+        final String cou = radioBtnCough.getText().toString().trim();
+        final String fev = radioBtnFever.getText().toString().trim();
+        final String weight = radioBtnWeight_loss.getText().toString().trim();
+        final String n_sweats = radioBtnNight_Sweats.getText().toString().trim();
+        final String c_xray = radioBtnChest_xray.getText().toString().trim();
+        final String p_therapy = radioBtnPreventivetherapy.getText().toString().trim();
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SAVE_NAME,
@@ -500,4 +487,13 @@ public class MainActivity extends ACBaseActivity implements View.OnClickListener
         Intent intent = new Intent(this, lists.class);
         startActivity(intent);
     }
+
+//    public void onBackPressed()
+//    {
+//        //do whatever you want the 'Back' button to do
+//        //as an example the 'Back' button is set to start a new Activity named 'NewActivity'
+//        this.startActivity(new Intent(this, PatientDashboardActivity.class));
+//
+//        return;
+//    }
 }

@@ -182,6 +182,13 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
         rootView = inflater.inflate(R.layout.fragment_contacts_add, null, false);
 //       pasted from here
 
+        buttonSave = (Button) rootView.findViewById(R.id.buttonSave);
+        buttonSave.post(new Runnable(){
+            @Override
+            public void run() {
+                buttonSave.performClick();
+            }
+        });
 
         FontsUtil.setFont((ViewGroup) rootView);
 
@@ -324,50 +331,68 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
                 radioBtnPreventivetherapy = (RadioButton) rootView.findViewById(selectedPreventive_therapyId);
 
 
-             String text = editname.getText().toString();
-             String text1 = patientDetailsNames.getText().toString();
-             String middlenametxt = editTextmiddlename.getText().toString();
-             String dobtxt = editdob.getText().toString();
-             String addresstxt = editaddress.getText().toString();
-             String editmobiletxt = editmobile.getText().toString();
-             String editlocationtxt = editlocation.getText().toString();
-             String editproximitytxt = editproximity.getText().toString();
-             String editgendertxt = radioBtngender.getText().toString();
-             String editlocationdrp = mSpinner.getSelectedItem().toString();
-             String editrelationshispinnerdrp = relationshispinner.getSelectedItem().toString();
-             String editpreviousTreatmentspinnerdrp = previousTreatmentspinner.getSelectedItem().toString();
-             String editchestxrayspinnerdrp = chestxrayspinner.getSelectedItem().toString();
-             String editlatenttestspinnerdrp = latenttestspinner.getSelectedItem().toString();
-             String editresultlbispinnerdrp = resultlbispinner.getSelectedItem().toString();
-             String editcoughtxt = radioBtnCough.getText().toString();
-             String editfevertxt = radioBtnFever.getText().toString();
-             String editweight_losstxt = radioBtnWeight_loss.getText().toString();
-                String editnight_sweatstxt = radioBtnNight_Sweats.getText().toString();
-                String editchest_xraytxt = radioBtnChest_xray.getText().toString();
-                String editpreventive_therapytxt = radioBtnPreventivetherapy.getText().toString();
+//             String text = editname.getText().toString();
+//             String text1 = patientDetailsNames.getText().toString();
+//             String middlenametxt = editTextmiddlename.getText().toString();
+//             String dobtxt = editdob.getText().toString();
+//             String addresstxt = editaddress.getText().toString();
+//             String editmobiletxt = editmobile.getText().toString();
+//             String editlocationtxt = editlocation.getText().toString();
+//             String editproximitytxt = editproximity.getText().toString();
+//             String editgendertxt = radioBtngender.getText().toString();
+//             String editlocationdrp = mSpinner.getSelectedItem().toString();
+//             String editrelationshispinnerdrp = relationshispinner.getSelectedItem().toString();
+//             String editpreviousTreatmentspinnerdrp = previousTreatmentspinner.getSelectedItem().toString();
+//             String editchestxrayspinnerdrp = chestxrayspinner.getSelectedItem().toString();
+//             String editlatenttestspinnerdrp = latenttestspinner.getSelectedItem().toString();
+//             String editresultlbispinnerdrp = resultlbispinner.getSelectedItem().toString();
+//             String editcoughtxt = radioBtnCough.getText().toString();
+//             String editfevertxt = radioBtnFever.getText().toString();
+//             String editweight_losstxt = radioBtnWeight_loss.getText().toString();
+//                String editnight_sweatstxt = radioBtnNight_Sweats.getText().toString();
+//                String editchest_xraytxt = radioBtnChest_xray.getText().toString();
+//                String editpreventive_therapytxt = radioBtnPreventivetherapy.getText().toString();
+
+                String text = "";
+                String text1 = patientDetailsNames.getText().toString();
+                String middlenametxt = "";
+                String dobtxt = "";
+                String addresstxt = "";
+                String editmobiletxt = "";
+                String editlocationtxt = "";
+                String editproximitytxt ="";
+                String editgendertxt = "";
+                String editlocationdrp = "";
+                String editrelationshispinnerdrp = "";
+                String editpreviousTreatmentspinnerdrp ="";
+                String editchestxrayspinnerdrp ="";
+                String editlatenttestspinnerdrp = "";
+                String editresultlbispinnerdrp = "";
+                String editcoughtxt = "";
+                String editfevertxt = "";
+                String editweight_losstxt = "";
+                String editnight_sweatstxt = "";
+                String editchest_xraytxt = "";
+                String editpreventive_therapytxt = "";
+
+
 
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                intent.putExtra("mytext",text);
+//                intent.putExtra("mytext",text);
                 intent.putExtra("idnt",text1);
-                intent.putExtra("middlenametxt", middlenametxt );
-                intent.putExtra("dobtxt", dobtxt );
-                intent.putExtra("addresstxt", addresstxt );
-                intent.putExtra("editmobiletxt", editmobiletxt );
-                intent.putExtra("editlocationtxt", editlocationtxt );
-                intent.putExtra("editproximitytxt", editproximitytxt );
-                intent.putExtra("editgendertxt", editgendertxt );
-                intent.putExtra("editlocationdrp", editlocationdrp );
-                intent.putExtra("editrelationshispinnerdrp", editrelationshispinnerdrp );
-                intent.putExtra("editpreviousTreatmentspinnerdrp", editpreviousTreatmentspinnerdrp );
-                intent.putExtra("editchestxrayspinnerdrp", editchestxrayspinnerdrp );
-                intent.putExtra("editlatenttestspinnerdrp", editlatenttestspinnerdrp );
-                intent.putExtra("editresultlbispinnerdrp", editresultlbispinnerdrp );
-                intent.putExtra("editcoughtxt", editcoughtxt );
-                intent.putExtra("editfevertxt", editfevertxt );
-                intent.putExtra("editweight_losstxt", editweight_losstxt );
-                intent.putExtra("editnight_sweatstxt", editnight_sweatstxt );
-                intent.putExtra("editchest_xraytxt", editchest_xraytxt );
-                intent.putExtra("editpreventive_therapytxt", editpreventive_therapytxt );
+//                intent.putExtra("middlenametxt", middlenametxt );
+//                intent.putExtra("dobtxt", dobtxt );
+//                intent.putExtra("addresstxt", addresstxt );
+//                intent.putExtra("editmobiletxt", editmobiletxt );
+//                intent.putExtra("editlocationtxt", editlocationtxt );
+//                intent.putExtra("editproximitytxt", editproximitytxt );
+//
+//                intent.putExtra("editlocationdrp", editlocationdrp );
+//                intent.putExtra("editrelationshispinnerdrp", editrelationshispinnerdrp );
+     //           intent.putExtra("editpreviousTreatmentspinnerdrp", editpreviousTreatmentspinnerdrp );
+//                intent.putExtra("editchestxrayspinnerdrp", editchestxrayspinnerdrp );
+//                intent.putExtra("editlatenttestspinnerdrp", editlatenttestspinnerdrp );
+//                intent.putExtra("editresultlbispinnerdrp", editresultlbispinnerdrp );
 
 
 
@@ -380,7 +405,7 @@ public class ContactPatientDetailsFragment extends PatientDashboardFragment impl
 //                main.saveNameToServer();
 
                 final ProgressDialog progressDialog = new ProgressDialog(getContext());
-                progressDialog.setMessage("Submitting Data for Verification");
+                progressDialog.setMessage("Loading ... ");
                 progressDialog.show();
 
             }
