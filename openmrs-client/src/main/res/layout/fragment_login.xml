@@ -65,6 +65,7 @@
                     android:id="@+id/textInputLayoutLoginURL"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:layout_alignParentTop="true">
 
                     <EditText
@@ -80,6 +81,7 @@
                         android:maxLines="1"
                         android:textAlignment="center"
                         android:textSize="14sp"
+                        android:visibility="invisible"
                         android:textStyle="bold" />
                 </android.support.design.widget.TextInputLayout>
 
